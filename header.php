@@ -13,6 +13,9 @@ use app\controller\MenuController; ?>
     <link rel="stylesheet" href="<?php echo Assets::css('flickity.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('style.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('responsive.css'); ?>">
+    <link rel="stylesheet" href="<?php echo Assets::css('simple-scrollbar.css'); ?>">
+
+
 </head>
 
 <body>
@@ -24,11 +27,14 @@ use app\controller\MenuController; ?>
             <div class="row_custom">
                 <div class="header">
                     <div class="col-12 col-md-3 col-lg-2 col-xl-1 header_logo">
+                        <a href="<?php echo home_url()?>">
                         <img src="<?php echo Assets::image('Group 16541@2x.png'); ?>" alt="">
+                        </a>
                     </div>
                     <div class="col-12 col-md-8 col-lg-4  header_form_section">
-                        <form action="" class="header_form">
-                            <input type="text" placeholder="دنبال چی می گردی ؟">
+                        <?php get_search_form() ?>
+                        <form action="" role="search" method="get" class="header_form">
+                            <input type="text" name="s" placeholder="دنبال چی می گردی ؟">
                             <div class="search_result">
                                 <ul class="search_result_category">
                                     <li><a href="#">نتیجه جست و جو در دسته بندی <span
@@ -55,6 +61,7 @@ use app\controller\MenuController; ?>
                         <span class="divider"></span>
                         <a href="#">
                             <button class="cart_btn"><span class="cart_custom"></span> سبد خرید</button>
+
                         </a>
 
                     </div>

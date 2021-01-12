@@ -1,4 +1,5 @@
-<?php use app\Views\Views;
+<?php use app\classes\Assets;
+use app\Views\Views;
 
 get_header(); ?>
 <?php Views::render('single_breadcrump'); ?>
@@ -13,7 +14,7 @@ get_header(); ?>
                 <li><a href="#tabs-3">نظرات</a></li>
             </ul>
             <div id="tabs-1">
-                <?php the_content();?>
+                <?php the_content(); ?>
             </div>
             <div id="tabs-2">
                 <div class="feature_custom_info">
@@ -62,14 +63,21 @@ get_header(); ?>
                                 نام
                                 <label for="" class="required">*</label>
                             </label>
-                            <input type="text" name="author">
+                            <?php $data_user_login = wp_get_current_user()->data;
+                            //                            var_dump($data_user_login);
+                            ?>
+                            <input type="text" name="author" value="<?php if (isset($data_user_login->user_nicename)) {
+                                echo $data_user_login->user_nicename;
+                            } ?>">
                         </p>
                         <p>
                             <label for="">
                                 ایمیل
                                 <label for="" class="required">*</label>
                             </label>
-                            <input type="email" name="email">
+                            <input type="email" name="email" value="<?php if (isset($data_user_login->user_nicename)) {
+                                echo $data_user_login->user_email;
+                            } ?>">
                         </p>
                         <label for="">
                             <input type="checkbox">
@@ -78,7 +86,7 @@ get_header(); ?>
 
                         <input type="hidden" name="comment_post_ID" value="26" id="comment_post_ID">
                         <input type="hidden" name="comment_parent" id="comment_parent" value="0">
-<!--                        <input name="submit" type="submit" id="submit" value="فرستادن دیدگاه">-->
+                        <!--                        <input name="submit" type="submit" id="submit" value="فرستادن دیدگاه">-->
                         <button type="submit">ارسال نظر</button>
                     </form>
                 </div>
@@ -96,246 +104,61 @@ get_header(); ?>
             </div>
             <div class="col-12">
                 <div class="carousel carousel_custom" data-flickity='{ "contain": true }'>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
+                    <?php $cats_array = array(0);
+                    $terms = wp_get_post_terms($product->id, 'product_cat');
+                    foreach ($terms as $term) {
+                        $children = get_term_children($term->term_id, 'product_cat');
+                        if (!sizeof($children)) $cats_array[] = $term->term_id;
+                    }
+                    $args = apply_filters('woocommerce_related_products_args',
+                        array('post_type' => 'product', 'ignore_sticky_posts' => 1, 'no_found_rows' => 1,
+                            'posts_per_page' => 7, 'orderby' => 'rand',
+                            'meta_query' => array(array('key' => '_stock_status', 'value' => 'instock')),
+                            'tax_query' => array(array('taxonomy' => 'product_cat', 'field' => 'id', 'terms' => $cats_array),)));
+                    $related_items = new WP_Query($args);
+                    if ($related_items->have_posts()):while ($related_items->have_posts()):$related_items->the_post();
+                        global $product;
+                        $id = $product->get_id();
+                        $data = $product->get_data();
 
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent">30%</span>
+                        ?>
+                        <div class="slide">
+                            <div class="c_carousel_custom">
+                                <a href="<?php the_permalink(); ?>" class="c-prodcut-box__img">
+                                    <div class="c-prodcut-box">
+
+                                        <img src="<?php the_post_thumbnail_url() ?>" width="100px" height="150px"
+                                             alt="">
                                     </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
+                                    <div class="c-product-box__title c-product-box__title_2">
+                                        <?php the_title(); ?>
                                     </div>
-                                </div>
+                                    <div class="c-product-box__bottom">
+                                        <div class="off_section">
+                                            تومان <span
+                                                    class="off_price"><?php echo $data['regular_price'] ?> تومان </span>
+                                            <span class="off_percent">
+
+                                                    <?php
+                                                    $off = ($data['sale_price'] * 100) / $data['regular_price'];
+                                                    $off = 100 - $off;
+                                                    echo $off;
+                                                    ?>%
+                                            </span>
+                                        </div>
+                                        <div class="price_section">
+
+                                            <span class="price">  <?php echo $data['sale_price'] ?>تومان </span>
+
+                                        </div>
+                                    </div>
+                            </div>
+                            </a>
                         </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
+                    <?php endwhile; endif;
+                    wp_reset_postdata(); ?>
 
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
 
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent">30%</span>
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent">30%</span>
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent">30%</span>
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent">30%</span>
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
                 </div>
             </div>
         </div>
@@ -358,7 +181,7 @@ get_header(); ?>
             </div>
             <div class="d-none d-md-block col-6 col-md-4 col-lg-5" style="padding: 0;">
                 <div class="login_image">
-                    <img src="img/Intersection 17.png" alt="">
+                    <img src="<?php echo Assets::image('Intersection 17.png') ?>" alt="">
                 </div>
 
             </div>
@@ -372,107 +195,92 @@ get_header(); ?>
             <div class="col-12 slider_offer_title">
                 <div class="slider_offer_border">
                     <span>مشاهده همه</span>
-                    <h2>محصولات مکمل</h2>
+                    <?php
+                    global $product;
+                    $id = $product->get_id();
+
+                    $data = $product->get_data();
+
+                    $id_cate = $data['category_ids'];
+                    $names_cate = '';
+                    foreach ($id_cate as $id) {
+                        $term = get_term_by('id', $id, 'product_cat');
+                        $names_cate .= $term->name . '  ';
+
+
+                        $args = array(
+                            'post_type' => 'product',
+                            'post_status' => 'publish',
+                            'ignore_sticky_posts' => 1,
+                            'posts_per_page' => '12',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'product_cat',
+                                    'field' => 'term_id', //This is optional, as it defaults to 'term_id'
+                                    'terms' => $id,
+                                    'operator' => 'IN' // Possible values are 'IN', 'NOT IN', 'AND'.
+                                ),
+                                array(
+                                    'taxonomy' => 'product_visibility',
+                                    'field' => 'slug',
+                                    'terms' => 'exclude-from-catalog', // Possibly 'exclude-from-search' too
+                                    'operator' => 'NOT IN'
+                                )
+                            )
+                        );
+                        $products = new WP_Query($args);
+
+                    }
+                    ?>
+
+
+                    <h2> محصولات<?php echo '   ' . $names_cate . '   ' ?> </h2>
                 </div>
             </div>
             <div class="col-12">
                 <div class="carousel carousel_custom" data-flickity='{ "contain": true }'>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
+                    <?php if ($products->have_posts()) : ?>
+                        <?php while ($products->have_posts()) : $products->the_post(); ?>
+                            <?php
+                            global $product;
+                            $id = $product->get_id();
+                            $data = $product->get_data();
+                            $date_from = $data['date_on_sale_from'];
+                            $date_to = $data['date_on_sale_to'];
 
-                                    <img src="img/11542575902017111412.png" alt="">
+                            ?>
+                            <div class="slide">
+                                <div class="c_carousel_custom">
+                                    <a href="#" class="c-prodcut-box__img">
+                                        <div class="c-prodcut-box">
+
+                                            <img   width="100px" height="150px"
+                                                   src="<?php the_post_thumbnail_url() ?>" alt="">
+                                        </div>
+                                        <div class="c-product-box__title c-product-box__title_2">
+                                            <?php the_title(); ?>
+                                        </div>
+                                        <div class="c-product-box__bottom">
+                                            <div class="off_section">
+                                                تومان <span class="off_price"><?php echo $data['regular_price'] ?> </span>
+                                                <span class="off_percent off_percent_2"> <?php
+                                                    $off=($data['sale_price']*100)/$data['regular_price'];
+                                                    $off=100-$off;
+                                                    echo $off;
+                                                    ?>%</span>
+                                            </div>
+                                            <div class="price_section">
+
+                                                <span class="price "> <?php echo $data['sale_price'] ?> </span>
+
+                                            </div>
+                                        </div>
                                 </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent off_percent_2">30%</span>
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price ">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-                                        <span class="off_percent off_percent_2">30%</span>
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
-                    <div class="slide">
-                        <div class="c_carousel_custom">
-                            <a href="#" class="c-prodcut-box__img">
-                                <div class="c-prodcut-box">
-
-                                    <img src="img/11542575902017111412.png" alt="">
-                                </div>
-                                <div class="c-product-box__title c-product-box__title_2">
-                                    پودر سوپر وی ( شکلاتی ) کارن حجم: ۱۰۰۰ گرم
-                                </div>
-                                <div class="c-product-box__bottom">
-                                    <div class="off_section">
-                                        تومان <span class="off_price">164/700 </span>
-
-                                    </div>
-                                    <div class="price_section">
-
-                                        <span class="price">  164/700 </span>
-
-                                    </div>
-                                </div>
-                        </div>
-                        </a>
-                    </div>
+                                </a>
+                            </div>
+                        <?php endwhile; ?>
+                        <?php wp_reset_postdata(); ?>
+                    <?php endif; ?>
 
                 </div>
             </div>

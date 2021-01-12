@@ -15,8 +15,6 @@
                 <?php
                 $arg = array(
                     'post_type' => 'product',
-
-
                     'order' => 'DESC',
                     'post_status' => 'publish',
                     'meta_query' => array(

@@ -19,21 +19,14 @@
                     while ($loop->have_posts()) : $loop->the_post();
                         global $product;
                         $product_id = $product->get_id();
-
                         $product = new WC_product($product_id);
                         $attachment_ids = $product->get_gallery_image_ids();
-
                         foreach ($attachment_ids as $attachment_id) {
                             // Display the image URL
                             ?>
                             <img src="<?php echo $Original_image_url = wp_get_attachment_url($attachment_id); ?>"
                                  alt="">
                             <?php
-
-
-                            // Display Image instead of URL
-                            //  echo wp_get_attachment_image($attachment_id, 'full');
-
                         }
                     endwhile;
                 } else {
@@ -66,6 +59,7 @@
         </div>
         <div class="col-xs-7 col-sm-7 col-md-7 col-lg-4">
             <div class="product_title">
+
                 <h2>   <?php the_title(); ?></h2>
 
             </div>
@@ -86,6 +80,7 @@
                     دسته</span>
 
             </div>
+
             <div class="product_details">
                 <?php
                 global $product;
@@ -149,6 +144,8 @@
                 </div>
                 <div class="buy_button">
                     <a href="#">
+                        <?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
+
                         <button><span class="fa fa-plus"></span>افزودن به سبد خرید</button>
                     </a>
                 </div>
@@ -181,4 +178,5 @@
         </div>
     </div>
 </div>
+
 <!-- end of product section -->

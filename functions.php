@@ -146,3 +146,11 @@ function posts_custom_column_view($column_name, $id){
         echo get_post_meta(get_the_ID(),'post_view',true);
     }
 }
+
+
+add_filter('woocommerce_add_to_cart_fragments','woocommerce_header_add_to_cart_fragment');
+function woocommerce_header_add_to_cart_fragment($fragments){ ob_start(); ?>
+    <span class="number"><?php echo sprintf (_n( '%d', '%d', WC()->cart->get_cart_contents_count()), WC()->cart->get_cart_contents_count()); ?></span>
+    <?php $fragments['.number'] = ob_get_clean(); return $fragments;}
+add_filter('woocommerce_product_single_add_to_cart_text','woo_custom_cart_button_text');
+function woo_custom_cart_button_text(){return __('افزودن به سبد','woocommerce');}

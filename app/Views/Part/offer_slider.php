@@ -48,11 +48,11 @@
 
                                         <img
                                                 onload="setInterval(
-                                                        function(){
-                                                        maketimer2('<?php echo $data_from['date'] ?>' , '<?php echo $data_to['date'] ?>' , '<?php echo $id?>')
-
-                                                        }
-                                                        , 1000);"
+                                                        //function(){
+                                                        //maketimer2('<?php //echo $data_from['date'] ?>//' , '<?php //echo $data_to['date'] ?>//' , '<?php //echo $id?>//')
+                                                        //
+                                                        //}
+                                                        //, 1000);"
                                                 width="100px" height="150px" src="<?php the_post_thumbnail_url() ?>" alt="">
                                     </div>
                                     <div class="c-product-box__title">

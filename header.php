@@ -14,7 +14,7 @@ use app\controller\MenuController; ?>
     <link rel="stylesheet" href="<?php echo Assets::css('style.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('responsive.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('simple-scrollbar.css'); ?>">
-
+<?php wp_head();?>
 
 </head>
 
@@ -32,15 +32,14 @@ use app\controller\MenuController; ?>
                         </a>
                     </div>
                     <div class="col-12 col-md-8 col-lg-4  header_form_section">
-                        <?php get_search_form() ?>
-                        <form action="" role="search" method="get" class="header_form">
-                            <input type="text" name="s" placeholder="دنبال چی می گردی ؟">
+
+                        <form action="<?php echo home_url()?>" role="search" method="get" class="header_form">
+                            <input type="text" name="s" id="search_input" placeholder="دنبال چی می گردی ؟" value="<?php if(isset($_GET['s'])) echo $_GET['s']?>">
                             <div class="search_result">
                                 <ul class="search_result_category">
-                                    <li><a href="#">نتیجه جست و جو در دسته بندی <span
-                                                    class="search_result_category_link">(لینک)</span></a></li>
+                                    <li><a href="#">نتیجه جست و جو  در دسته بندی   <span class="search_result_category_link">(لینک)</span></a></li>
                                 </ul>
-                                <ul class="search_result_info">
+                                <ul id="search_result_info" class="search_result_info">
                                     <li><a href="#">مکمل بدنسازی لورم ایپسوم 1</a></li>
                                     <li><a href="#">مکمل بدنسازی لورم ایپسوم 2</a></li>
                                     <li><a href="#">مکمل بدنسازی لورم ایپسوم 3</a></li>
@@ -136,12 +135,6 @@ use app\controller\MenuController; ?>
                                         </div>';
                             wp_nav_menu(array(
                                 'theme_location' => 'header-menu',
-
-
-
-
-
-
                                 'walker'=>new AWP_Menu_Walker
                             )); ?>
 

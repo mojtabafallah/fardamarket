@@ -154,3 +154,45 @@ function woocommerce_header_add_to_cart_fragment($fragments){ ob_start(); ?>
     <?php $fragments['.number'] = ob_get_clean(); return $fragments;}
 add_filter('woocommerce_product_single_add_to_cart_text','woo_custom_cart_button_text');
 function woo_custom_cart_button_text(){return __('افزودن به سبد','woocommerce');}
+
+
+//page navigation
+function wp_pagination() {
+    global $wp_query;
+    $big = 12345678;
+    $page_format = paginate_links( array(
+        'base' => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+    'format' => '?paged=%#%',
+    'current' => max( 1, get_query_var('paged') ),
+    'total' => $wp_query->max_num_pages,
+    'type'  => 'array'
+) );
+if( is_array($page_format) ) {
+    $paged = ( get_query_var('paged') == 0 ) ? 1 : get_query_var('paged');
+    echo '<div><ul>';
+    echo '<li><span>'. $paged . ' از ' . $wp_query->max_num_pages .'</span></li>';
+    foreach ( $page_format as $page ) {
+        echo '<li>'.$page.'</li>';
+    }
+    echo '</ul></div>';
+}
+}
+
+if(isset($_POST['name_model']))
+{
+    global $wp_query;
+
+
+    $loop=new WP_Query(     array(
+        'post_type'=>'product',
+        's'=>$_POST['name_model']
+    ));
+    $data=new \WP_Query(
+        array(
+            'post_type'=>'product',
+            's'=>$_POST['name_model']
+        )
+    );
+    return $data;
+
+}

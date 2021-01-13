@@ -3,8 +3,18 @@ use app\controller\SearchController;
 
 get_header(); ?>
 
-<?php $result_search = $_GET['s'];
-$query = SearchController::fetch_data($result_search);
+<?php
+$result_search = $_GET['s'];
+//global $wp_query;
+//$big = 999999999; // need an unlikely integer
+//echo paginate_links(array(
+//    'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
+//    'format' => '?paged=%#%',
+//
+//    'current' => max(1, get_query_var('paged')),
+//    'total' => $wp_query->max_num_pages
+//));
+
 
 ?>
 
@@ -237,65 +247,54 @@ $query = SearchController::fetch_data($result_search);
 
             <div class="categorizing_product">
                 <?php
-                if ($query->have_posts()) :
-                    while ($query->have_posts()):
-                        $query->the_post();
-                        global $product;
-                        $id = $product->get_id();
-                        $data = $product->get_data();
-                        ?>
-                        <a href="<?php the_permalink(); ?>">
-                            <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-                                <div class="categorizing_product_custom">
-                                    <div class="categorizing_product_custom_img">
-                                        <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+
+
+                if ($wp_query->have_posts()) :
+                    while ($wp_query->have_posts()):
+                        $wp_query->the_post();
+                        if (get_post_type() == "product"):
+                            global $product;
+
+                            $id = $product->get_id();
+                            $data = $product->get_data();
+                            ?>
+                            <a href="<?php the_permalink(); ?>">
+                                <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+                                    <div class="categorizing_product_custom">
+                                        <div class="categorizing_product_custom_img">
+                                            <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+                                        </div>
+                                        <div class="categorizing_product_custom_info">
+                                            <p> <?php the_title(); ?></p>
+                                        </div>
+                                        <div class="categorizing_product_custom_price">
+                                            <span><?php echo $data['regular_price'] ?>تومان </span>
+                                        </div>
+                                        <div class="categorizing_product_custom_sub_info">
+                                            <span class="real_price"><?php echo $data['sale_price'] ?>   تومان</span>
+                                            <span class="time">01:22:36</span>
+                                        </div>
+                                        <span class="off">  <?php
+                                            $off = ($data['sale_price'] * 100) / $data['regular_price'];
+                                            $off = 100 - $off;
+                                            echo $off;
+                                            ?>%</span>
                                     </div>
-                                    <div class="categorizing_product_custom_info">
-                                        <p> <?php the_title(); ?></p>
-                                    </div>
-                                    <div class="categorizing_product_custom_price">
-                                        <span><?php echo $data['regular_price'] ?>تومان </span>
-                                    </div>
-                                    <div class="categorizing_product_custom_sub_info">
-                                        <span class="real_price"><?php echo $data['sale_price'] ?>   تومان</span>
-                                        <span class="time">01:22:36</span>
-                                    </div>
-                                    <span class="off">  <?php
-                                        $off=($data['sale_price']*100)/$data['regular_price'];
-                                        $off=100-$off;
-                                        echo $off;
-                                        ?>%</span>
                                 </div>
-                            </div>
-                        </a>
-                    <?php
+                            </a>
+                        <?php
+                        endif;
                     endwhile;
                 else:
                     echo __('محصولی موجود نیست');
                 endif;
-                wp_reset_postdata();
                 ?>
-
 
             </div>
 
             <div class="col-12">
                 <nav class="woocommerce-pagination">
-      <?php SearchController::wpbeginner_numeric_posts_nav();?>
-                    <ul class="page-numbers">
-                        <li>
-                            <a class="prev page-numbers" href="https://shamyas.ir/shop/shop/page/1/"></a>
-                        </li>
-                        <li><a class="page-numbers" href="https://shamyas.ir/shop/shop/page/1/">1</a></li>
-                        <li><span aria-current="page" class="page-numbers current">2</span></li>
-                        <li><a class="page-numbers" href="https://shamyas.ir/shop/shop/page/3/">3</a></li>
-                        <li><a class="page-numbers" href="https://shamyas.ir/shop/shop/page/4/">4</a></li>
-                        <li><a class="page-numbers" href="https://shamyas.ir/shop/shop/page/5/">5</a></li>
-                        <li><a class="page-numbers" href="https://shamyas.ir/shop/shop/page/6/">6</a></li>
-                        <li>
-                            <a class="next page-numbers" href="https://shamyas.ir/shop/shop/page/3/"></a>
-                        </li>
-                    </ul>
+                    <?php wp_pagination(); ?>
                 </nav>
             </div>
         </div>

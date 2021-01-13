@@ -4,19 +4,19 @@
         <div class="service_features">
             <div class="service_section">
                 <div class="col-sm-6 col-md-3 service_features_info">
-                    <img src="<?php echo Assets::image('Group 16436.png');?>" alt="">
+                    <img src="<?php echo Assets::image('Group 16436.png'); ?>" alt="">
                     <span>مشاوره و پشتیبان</span>
                 </div>
                 <div class="col-sm-6 col-md-3 service_features_info">
-                    <img src="<?php echo Assets::image('Group 16438.png');?>" alt="">
+                    <img src="<?php echo Assets::image('Group 16438.png'); ?>" alt="">
                     <span>خرید مطمئن و با کیفیت</span>
                 </div>
                 <div class="col-sm-6 col-md-3 service_features_info">
-                    <img src="<?php echo Assets::image('Group 16439.png');?>" alt="">
+                    <img src="<?php echo Assets::image('Group 16439.png'); ?>" alt="">
                     <span>تضمین اصالت کالا</span>
                 </div>
                 <div class="col-sm-6 col-md-3 service_features_info">
-                    <img src="<?php echo Assets::image('Group 16440.png');?>" alt="">
+                    <img src="<?php echo Assets::image('Group 16440.png'); ?>" alt="">
                     <span>ارسال سریع به سراسر ایران</span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
 
                         <a href="#">
                             <div class="article">
-                                <img src="<?php echo Assets::image('footer_img_2.png');?>" alt="">
+                                <img src="<?php echo Assets::image('footer_img_2.png'); ?>" alt="">
                                 <figure>
                                     <h3>بهترین مکمل ورزشی برای افزایش وزن</h3>
                                     <p>مکمل بدنسازی یکی از بهترین نمونه مکمل هاییست که در صورت ...</p>
@@ -39,7 +39,7 @@
                         </a>
                         <a href="#">
                             <div class="article">
-                                <img src="<?php echo Assets::image('footer_img_1.png');?>" alt="">
+                                <img src="<?php echo Assets::image('footer_img_1.png'); ?>" alt="">
                                 <figure>
                                     <h3>بهترین مکمل ورزشی برای افزایش وزن</h3>
                                     <p>مکمل بدنسازی یکی از بهترین نمونه مکمل هاییست که در صورت ...</p>
@@ -49,7 +49,7 @@
                         </a>
                         <a href="#">
                             <div class="article">
-                                <img src="<?php echo Assets::image('footer_img_3.png');?>" alt="">
+                                <img src="<?php echo Assets::image('footer_img_3.png'); ?>" alt="">
                                 <figure>
                                     <h3>بهترین مکمل برای بانوان</h3>
                                     <p>مکمل بدنسازی یکی از بهترین نمونه مکمل هاییست که در صورت ...</p>
@@ -64,33 +64,33 @@
                     <div class="instegram_images">
                         <a href="#">
                             <div class="col-6 col-md-3 instegram_img">
-                                <img src="<?php echo Assets::image('instegram_sample_img.png');?>" alt="">
+                                <img src="<?php echo Assets::image('instegram_sample_img.png'); ?>" alt="">
                             </div>
                         </a>
                         <a href="#">
                             <div class="col-6 col-md-3 instegram_icon">
-                                <img src="<?php echo Assets::image('instegram_img.png');?>" alt="">
+                                <img src="<?php echo Assets::image('instegram_img.png'); ?>" alt="">
                                 <span>Join Us</span>
                             </div>
                         </a>
                         <a href="#">
                             <div class="col-6 col-md-3 instegram_img">
-                                <img src="<?php echo Assets::image('instegram_sample_img.png');?>" alt="">
+                                <img src="<?php echo Assets::image('instegram_sample_img.png'); ?>" alt="">
                             </div>
                         </a>
                         <a href="#">
                             <div class="col-6 col-md-3 instegram_img">
-                                <img src="<?php echo Assets::image('instegram_sample_img.png');?>" alt="">
+                                <img src="<?php echo Assets::image('instegram_sample_img.png'); ?>" alt="">
                             </div>
                         </a>
                         <a href="#">
                             <div class="col-6 col-md-3 instegram_img">
-                                <img src="<?php echo Assets::image('instegram_sample_img.png');?>" alt="">
+                                <img src="<?php echo Assets::image('instegram_sample_img.png'); ?>" alt="">
                             </div>
                         </a>
                         <a href="#">
                             <div class="col-6 col-md-3 instegram_img">
-                                <img src="<?php echo Assets::image('instegram_sample_img.png');?>" alt="">
+                                <img src="<?php echo Assets::image('instegram_sample_img.png'); ?>" alt="">
                             </div>
                         </a>
                     </div>
@@ -119,8 +119,12 @@
             <div class="farda_pharmecy">
                 <h2>فروشگاه و داروخانه انلاین فردا مارکت</h2>
                 <p>
-                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحـان گرافیک است، چاپگرها و متـون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنـوع با پیشرو در زبان فارسی ایجاد کرد،
-                    در این صورت می توان امــید داشت که تــمام و دشواری موجود در ارائه راهکارها، و شرایط سخــت تایپ به پایان رسد و زمان مورد نیاز شامل حروفـــچینی دستـاوردهای اصلی، و جوابگوی سوالات پیوســـته اهل دنیای موجود طراحی اساسا مورد استفاده
+                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحـان گرافیک است،
+                    چاپگرها و متـون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد
+                    نیاز، و کاربردهای متنـوع با پیشرو در زبان فارسی ایجاد کرد،
+                    در این صورت می توان امــید داشت که تــمام و دشواری موجود در ارائه راهکارها، و شرایط سخــت تایپ به
+                    پایان رسد و زمان مورد نیاز شامل حروفـــچینی دستـاوردهای اصلی، و جوابگوی سوالات پیوســـته اهل دنیای
+                    موجود طراحی اساسا مورد استفاده
                     قرار گیرد.
                 </p>
             </div>
@@ -143,15 +147,45 @@
 </footer>
 </div>
 </body>
-<script src="<?php echo Assets::js('jquery.min.js');?> "></script>
-<script src="<?php echo Assets::js('bootstrap.min.js');?> "></script>
+<script src="<?php echo Assets::js('jquery.min.js'); ?> "></script>
+<script src="<?php echo Assets::js('bootstrap.min.js'); ?> "></script>
 
-<script src="<?php echo Assets::js('popper.min.js');?>" ></script>
-<script src="<?php echo Assets::js('swiper_bundle.js');?>" ></script>
-<script src="<?php echo Assets::js('myfunction.js');?>" ></script>
-<script src="<?php echo Assets::js('flickity.pkgd.min.js');?>" ></script>
-<script src="<?php echo Assets::js('jquery.dd.min.js');?>" ></script>
-<script src="<?php echo Assets::js('jquery-ui.js');?>" ></script>
+<script src="<?php echo Assets::js('popper.min.js'); ?>"></script>
+<script src="<?php echo Assets::js('swiper_bundle.js'); ?>"></script>
+<script src="<?php echo Assets::js('myfunction.js'); ?>"></script>
+<script src="<?php echo Assets::js('flickity.pkgd.min.js'); ?>"></script>
+<script src="<?php echo Assets::js('jquery.dd.min.js'); ?>"></script>
+<script src="<?php echo Assets::js('jquery-ui.js'); ?>"></script>
+<script type="text/javascript">
+
+        $('#search_input').keyup(function () {
+            var data=  $('#search_input').val();
+
+            $.ajax({
+                type: 'post',
+                url: ' http://localhost:81/fm/wp-content/themes/fardamarket/app/controller/getdata.php',
+                data: {name_model: data},
+                success: function (response) {
+                    $('.search_result').css("visibility","unset")
+                        .css("opacity","100");
+
+                    $('#search_result_info')
+                        .empty()
+                        .append(response);
+                }
+            });
+
+        });
+        $('body').click(function () {
+
+            $('.search_result').css("visibility","hidden")
+                .css("opacity","0");
+        });
 
 
+
+
+</script>
+
+<?php wp_footer(); ?>
 </html>

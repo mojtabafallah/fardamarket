@@ -54,12 +54,20 @@
                                 <a href="<?php the_permalink(); ?>" class="c-prodcut-box__img">
                                     <div class="c-prodcut-box">
 
-                                        <img onload="setInterval(
-                                                //function(){
-                                                //maketimer2('<?php //echo $data_from['date'] ?>//' , '<?php //echo $data_to['date'] ?>//' , '<?php //echo $id?>//')
-                                                //
-                                                //}
-                                                //, 1000);"
+                                        <img
+                                            <?php
+
+                                        if(!is_null($data_from['date'])):?>
+
+                                            onload="
+
+                                            setInterval(
+                                                function(){
+
+                                                maketimer2('<?php echo $data_from['date'] ?>' , '<?php echo $data_to['date'] ?>' , '<?php echo $id?>')
+                                                }
+                                                , 1000);"
+                                             <?php endif;?>
                                              width="100px" height="150px"
                                              src="<?php the_post_thumbnail_url() ?>"
                                              alt="">
@@ -82,6 +90,7 @@
                                         <div class="price_section">
                                             <span class="price"><?php echo $data['sale_price'] ?> تومان</span>
                                             <span class="time">
+                                                <div class="countdown"></div>
                                                   <div class="days-<?php echo $id ?>">
 
                                                   </div>

@@ -9,8 +9,6 @@
         </div>
         <div class="col-12">
             <div class="carousel carousel_custom" data-flickity='{ "contain": true }'>
-
-
                 <?php
                 $tax_query[] = array(
                     'taxonomy' => 'product_visibility',
@@ -23,15 +21,13 @@
                     'post_status' => 'publish',
                     'ignore_sticky_posts' => 1,
                     'posts_per_page' => 10,
-
-                    'order' => $order == 'asc' ? 'asc' : 'desc',
+                    'order' => 'desc',
                     'tax_query' => $tax_query // <===
                 ));
 
                 if ($loop->have_posts()) {
                     while ($loop->have_posts()) : $loop->the_post();
                         ?>
-
                         <?php global $product;
                         $id = $product->get_id();
                         $data = $product->get_data();
@@ -45,15 +41,15 @@
                             <div class="c_carousel_custom">
                                 <a href="<?php the_permalink(); ?>" class="c-prodcut-box__img">
                                     <div class="c-prodcut-box">
-
                                         <img
+
                                                 onload="setInterval(
-                                                        //function(){
-                                                        //maketimer2('<?php //echo $data_from['date'] ?>//' , '<?php //echo $data_to['date'] ?>//' , '<?php //echo $id?>//')
-                                                        //
-                                                        //}
-                                                        //, 1000);"
-                                                width="100px" height="150px" src="<?php the_post_thumbnail_url() ?>" alt="">
+                                                        function(){
+                                                        maketimer2('<?php echo $data_from['date'] ?>' , '<?php echo $data_to['date'] ?>' , '<?php echo $id?>')
+                                                        }
+                                                        , 1000);"
+                                                width="100px" height="150px" src="<?php the_post_thumbnail_url() ?>"
+                                                alt="">
                                     </div>
                                     <div class="c-product-box__title">
                                         <?php the_title(); ?>
@@ -62,9 +58,11 @@
                                         <span class="off_price"><?php echo $data['regular_price'] ?>تومان </span>
                                         <div class="price_section">
                                             <span class="price"><?php echo $data['sale_price'] ?>   تومان</span>
-                                            <span class="time">  <div class="days-<?php echo $id ?>">
+                                            <span class="time">
+                                                <div class="days-<?php echo $id ?>">
 
-                                                  </div></span>
+                                                  </div>
+                                            </span>
                                         </div>
                                     </div>
                             </div>
@@ -78,10 +76,6 @@
                 }
                 wp_reset_postdata();
                 ?>
-
-
-
-
             </div>
         </div>
     </div>

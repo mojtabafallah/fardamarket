@@ -210,7 +210,10 @@ require_once 'Actions/SliderAction.php'
                     </form>
                 </td>
             </tr>
-        <?php endforeach; ?>
+        <?php endforeach;
+
+
+        ?>
         </tbody>
     </table>
 </div>

@@ -13,23 +13,21 @@
 
                 <?php
 
-                $arms = array(
-
+                $args = array(
                     'post_type' => 'product',
-
-                    'posts_per_page' => '10',
-
                     'post_status' => 'publish',
-
-                    'meta_key' => 'views',
-
                     'orderby' => 'meta_value_num',
+                    'meta_key' => 'post_views_count',
 
-                    'order' => 'DESC',
+                    'ignore_sticky_posts' => 1,
+                    'posts_per_page' => '12'
 
-                );
+                    );
 
-                $the_query = new WP_Query($arms); ?>
+
+
+
+                $the_query = new WP_Query($args); ?>
 
                 <?php if ($the_query->have_posts()) : ?>
 
@@ -44,10 +42,10 @@
                         $data_to = (array)$date_to; ?>
                         <div class="slide">
                             <div class="c_carousel_custom">
-                                <a href="#" class="c-prodcut-box__img">
+                                <a href="<?php echo get_permalink()?>" class="c-prodcut-box__img">
                                     <div class="c-prodcut-box">
 
-                                        <img src="<?php the_permalink(); ?>" alt="">
+                                        <img width="150px" height="150px" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
 
 
                                     </div>
@@ -57,7 +55,7 @@
                                     <div class="c-product-box__bottom">
                                         <span class="off_price"><?php echo $data['regular_price'] ?> تومان</span>
                                         <div class="price_section">
-                                            <span class="price">><?php echo $data['sale_price'] ?> تومان</span>
+                                            <span class="price"><?php echo $data['sale_price'] ?> تومان</span>
 
                                         </div>
                                     </div>

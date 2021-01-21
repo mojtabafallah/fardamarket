@@ -1,3 +1,55 @@
+function maketimer2(a,b,c) {
+
+    var countDownDate = new Date(b).getTime();
+
+
+    // Get today's date and time
+    var now = new Date().getTime();
+
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+
+    // Time calculations for days, hours, minutes and seconds
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Output the result in an element with id="demo"
+
+    if (!isNaN(days) && !isNaN(hours) && !isNaN(minutes) && !isNaN(seconds))
+    {
+      var x=  document.getElementsByClassName("days-"+c);
+      x[0].innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+      x[1].innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+    }
+
+
+        // If the count down is over, write some text
+        if (distance < 0) {
+
+            document.getElementsByClassName("demo").innerHTML = "تاریخی وجود ندارد";
+        }
+
+
+    // var interval = setInterval(function() {
+    //
+    //
+    //     var timer = timer2.split(':');
+    //     //by parsing integer, I avoid all extra string processing
+    //     var minutes = parseInt(timer[0], 10);
+    //     var seconds = parseInt(timer[1], 10);
+    //     --seconds;
+    //     minutes = (seconds < 0) ? --minutes : minutes;
+    //     if (minutes < 0) clearInterval(interval);
+    //     seconds = (seconds < 0) ? 59 : seconds;
+    //     seconds = (seconds < 10) ? '0' + seconds : seconds;
+    //     //minutes = (minutes < 10) ?  minutes : minutes;
+    //     $('.countdown').html(minutes + ':' + seconds);
+    //     timer2 = minutes + ':' + seconds;
+    // });
+
+}
 $(document).ready(function(e) {
     try {
         $("body select").msDropDown();

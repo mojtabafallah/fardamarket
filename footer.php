@@ -26,37 +26,28 @@
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 newest_article">
                     <h2>جدید ترین مطالب و مقالات فردا مارکت</h2>
                     <div class="article_section">
+                        <?php
+                         $args=array(
+                           'post_type'=>'post',
+                           'order_by'=>'date',
+                             'posts_per_page' => 3
+                         );
+                         $new_post=new WP_Query($args);
+                         if ($new_post->have_posts()):?>
+                         <?php while ($new_post->have_posts()): $new_post->the_post();?>
+                                 <a href="<?php the_permalink();?>">
+                                     <div class="article">
+                                         <img src="<?php the_post_thumbnail_url(); ?>" alt="">
+                                         <figure>
+                                             <h3><?php the_title()?></h3>
+                                             <p><?php the_excerpt();?></p>
+                                             <span>بیشتر  بخوانید</span>
+                                         </figure>
+                                     </div>
+                                 </a>
+                                 <?php endwhile;?>
+                        <?php endif;?>
 
-                        <a href="#">
-                            <div class="article">
-                                <img src="<?php echo Assets::image('footer_img_2.png'); ?>" alt="">
-                                <figure>
-                                    <h3>بهترین مکمل ورزشی برای افزایش وزن</h3>
-                                    <p>مکمل بدنسازی یکی از بهترین نمونه مکمل هاییست که در صورت ...</p>
-                                    <span>بیشتر  بخوانید</span>
-                                </figure>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="article">
-                                <img src="<?php echo Assets::image('footer_img_1.png'); ?>" alt="">
-                                <figure>
-                                    <h3>بهترین مکمل ورزشی برای افزایش وزن</h3>
-                                    <p>مکمل بدنسازی یکی از بهترین نمونه مکمل هاییست که در صورت ...</p>
-                                    <span>بیشتر  بخوانید</span>
-                                </figure>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="article">
-                                <img src="<?php echo Assets::image('footer_img_3.png'); ?>" alt="">
-                                <figure>
-                                    <h3>بهترین مکمل برای بانوان</h3>
-                                    <p>مکمل بدنسازی یکی از بهترین نمونه مکمل هاییست که در صورت ...</p>
-                                    <a href="#"><span>بیشتر  بخوانید</span></a>
-                                </figure>
-                            </div>
-                        </a>
                     </div>
                 </div>
                 <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-4 instegram_section">

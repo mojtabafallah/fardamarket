@@ -78,19 +78,8 @@ display: none;
 
 class AWP_Menu_Walker extends Walker_Nav_Menu
 {
-
-//    public function start_lvl( &$output, $depth = 0, $args = array() ) {
-//        if ($depth == 1) {
-//            $output .= "salam";
-//        }
-//
-//    }
-
-
     public function start_el(&$output, $object, $depth = 0, $args = array(), $current_object_id = 0)
     {
-
-
         if ($depth == 2) {
 //            $output .= '<li>' . $object->title . '</li>';
             $output .= '<div class="row">
@@ -123,18 +112,7 @@ class AWP_Menu_Walker extends Walker_Nav_Menu
         } else {
             parent::start_el($output, $object);
         }
-
     }
-
-//    public function end_el(&$output, $object, $depth = 0, $args = array(), $current_object_id = 0)
-//    {
-//        if ($depth == 2) {
-//            $output .= '</li>';
-//        } else {
-//            parent::end_el($output, $object);
-//        }
-//    }
-
 }
 
 
@@ -299,11 +277,9 @@ function render_aw_meta_box($post)
 
 function aw_include_script()
 {
-
     if (!did_action('wp_enqueue_media')) {
         wp_enqueue_media();
     }
-
     wp_enqueue_script('awscript', get_stylesheet_directory_uri() . '/js/awscript.js', array('jquery'), null, false);
 }
 
@@ -458,3 +434,468 @@ function posts_custom_column_views($column_name, $id){
     }
 }
 
+add_action( 'product_cat_add_form_fields', 'misha_add_term_fields' );
+
+function misha_add_term_fields( $taxonomy ) {
+
+    echo '
+<hr>
+<div class="form-field">
+	<label for="misha-text">متن آیتم اول</label>
+	<input type="text" name="name_item_top1" id="misha-text" />
+	<p>اسم آیتم اول که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product1">آدرس عکس آیتم اول</label>	
+	<input type="text" name="image_product1" id="image_product1" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category1" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product1">لینک آیتم اول</lable>
+	<input type="text" name="link_product1" id="link_product1" />
+	<p>لینک آیتم اول</p>
+	</div> <hr>';
+
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم دوم</label>
+	<input type="text" name="name_item_top2" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product2">آدرس عکس آیتم دوم</label>	
+	<input type="text" name="image_product2" id="image_product2" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	
+	 <p><a href="#" id="btn_upload_category2" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product2">لینک آیتم دوم</lable>
+	<input type="text" name="link_product2" id="link_product2" />
+	<p> لینک آیتم دوم</p>
+	</div><hr>';
+
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم سوم</label>
+	<input type="text" name="name_item_top3" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product3">آدرس عکس آیتم سوم</label>	
+	<input type="text" name="image_product3" id="image_product3" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category3" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product3">لینک آیتم سوم</lable>
+	<input type="text" name="link_product3" id="link_product3" />
+	<p>لینک آیتم سوم</p>
+	</div><hr>';
+
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم چهارم</label>
+	<input type="text" name="name_item_top4" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product4">آدرس عکس آیتم چهارم</label>	
+	<input type="text" name="image_product4" id="image_product4" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category4" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product4">لینک آیتم چهارم</lable>
+	<input type="text" name="link_product4" id="link_product4" />
+	<p>لینک آیتم چهارم</p>
+	</div><hr>';
+
+
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم پنجم</label>
+	<input type="text" name="name_item_top5" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product5">آدرس عکس آیتم پنجم</label>	
+	<input type="text" name="image_product5" id="image_product5" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category5" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product5">لینک آیتم پنجم</lable>
+	<input type="text" name="link_product5" id="link_product5" />
+	<p>لینک آیتم پنجم</p>
+	</div><hr>';
+
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم ششم</label>
+	<input type="text" name="name_item_top6" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product6">آدرس عکس آیتم ششم</label>
+	<input type="text" name="image_product6" id="image_product6" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category6" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product6">لینک آیتم ششم</lable>
+	<input type="text" name="link_product6" id="link_product6" />
+	<p>لینک آیتم ششم</p>
+	</div><hr>';
+
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم هفتم</label>
+	<input type="text" name="name_item_top7" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product7">آدرس عکس آیتم هفتم</label>
+	<input type="text" name="image_product7" id="image_product7" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category7" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product7">لینک آیتم هفتم</lable>
+	<input type="text" name="link_product7" id="link_product7" />
+	<p>لینک آیتم هفتم</p>
+	</div><hr>';
+    echo '<div class="form-field">
+	<label for="misha-text">متن آیتم هشتم</label>
+	<input type="text" name="name_item_top8" id="misha-text" />
+	<p>اسم آیتمی که در بالا نمایش داده میشود.</p>
+	
+	<label for="image_product8">آدرس عکس آیتم هشتم</label>
+	<input type="text" name="image_product8" id="image_product8" />
+	<p>آدرس عکسی که در بالا نمایش داده میشود.</p>
+	 <p><a href="#" id="btn_upload_category8" class="button button-secondary">انتخاب عکس </a></p>
+	<lable for="link_product8">لینک آیتم هشتم</lable>    
+	<input type="text" name="link_product8" id="link_product8" />
+	<p>لینک آیتم هشتم</p>
+	</div>';
+}
+
+add_action( 'product_cat_edit_form_fields', 'misha_edit_term_fields', 10, 2 );
+
+function misha_edit_term_fields( $term, $taxonomy ) {
+
+    $value = get_term_meta( $term->term_id, 'name_item_top1', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product1', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top1', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم اول</label>
+	</th>
+	<td>    
+		<input name="name_item_top1" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم اول را ویرایش کنید</p>
+		
+		<input name="image_product1" id="image_product1" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم اول را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category1" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product1" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم اول را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+    $value = get_term_meta( $term->term_id, 'name_item_top2', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product2', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top2', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم دوم</label>
+	</th>
+	<td>    
+		<input name="name_item_top2" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم دوم را ویرایش کنید</p>
+		
+		<input name="image_product2" id="image_product2" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم دوم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category2" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product2" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم دوم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+    $value = get_term_meta( $term->term_id, 'name_item_top3', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product3', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top3', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم سوم</label>
+	</th>
+	<td>    
+		<input name="name_item_top3" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم سوم را ویرایش کنید</p>
+		
+		<input name="image_product3" id="image_product3" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم سوم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category3" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product3" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم سوم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+    $value = get_term_meta( $term->term_id, 'name_item_top4', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product4', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top4', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم چهارم</label>
+	</th>
+	<td>    
+		<input name="name_item_top4" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم چهارم را ویرایش کنید</p>
+		
+		<input name="image_product4" id="image_product4" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم چهارم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category4" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product4" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم چهارم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+    $value = get_term_meta( $term->term_id, 'name_item_top5', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product5', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top5', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم پنجم</label>
+	</th>
+	<td>    
+		<input name="name_item_top5" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم پنجم را ویرایش کنید</p>
+		
+		<input name="image_product5" id="image_product5" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم پنجم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category5" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product5" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم پنجم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+    $value = get_term_meta( $term->term_id, 'name_item_top6', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product6', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top6', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم ششم</label>
+	</th>
+	<td>    
+		<input name="name_item_top6" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم ششم را ویرایش کنید</p>
+		
+		<input name="image_product6" id="image_product6" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم ششم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category6" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product6" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم ششم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+
+    $value = get_term_meta( $term->term_id, 'name_item_top7', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product7', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top7', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم هفتم</label>
+	</th>
+	<td>    
+		<input name="name_item_top7" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم هفتم را ویرایش کنید</p>
+		
+		<input name="image_product7" id="image_product7" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم هفتم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category7" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product7" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم هفتم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+
+    $value = get_term_meta( $term->term_id, 'name_item_top8', true );
+    $value1 = get_term_meta( $term->term_id, 'image_product8', true );
+    $value2 = get_term_meta( $term->term_id, 'link_item_top8', true );
+
+    echo '<tr class="form-field">
+	<th>
+		<label for="misha-text">آیتم هشتم</label>
+	</th>
+	<td>    
+		<input name="name_item_top8" id="misha-text" type="text" value="' . esc_attr( $value ) .'" />
+		<p class="description">متن ایتم هشتم را ویرایش کنید</p>
+		
+		<input name="image_product8" id="image_product8" type="text" value="' . esc_attr( $value1 ) .'" />
+		<p class="description">عکس ایتم هشتم را ویرایش کنید</p>
+		 <p><a href="#" id="btn_upload_category8" class="button button-secondary">انتخاب عکس </a></p>
+		
+		<input name="link_product8" id="misha-text" type="text" value="' . esc_attr( $value2 ) .'" />
+		<p class="description">لینک ایتم هشتم را ویرایش کنید</p>
+	</td>
+	</tr>';
+
+}
+
+add_action( 'created_product_cat', 'misha_save_term_fields' );
+add_action( 'edited_product_cat', 'misha_save_term_fields' );
+
+function misha_save_term_fields( $term_id ) {
+
+    update_term_meta(
+        $term_id,
+        'name_item_top1',
+        sanitize_text_field( $_POST[ 'name_item_top1' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product1',
+        sanitize_text_field( $_POST[ 'image_product1' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top1',
+        sanitize_text_field( $_POST[ 'link_product1' ] )
+    );
+    //*******
+    update_term_meta(
+        $term_id,
+        'name_item_top2',
+        sanitize_text_field( $_POST[ 'name_item_top2' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product2',
+        sanitize_text_field( $_POST[ 'image_product2' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top2',
+        sanitize_text_field( $_POST[ 'link_product2' ] )
+    );
+    //*********
+    update_term_meta(
+        $term_id,
+        'name_item_top3',
+        sanitize_text_field( $_POST[ 'name_item_top3' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product3',
+        sanitize_text_field( $_POST[ 'image_product3' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top3',
+        sanitize_text_field( $_POST[ 'link_product3' ] )
+    );
+    //*********
+    update_term_meta(
+        $term_id,
+        'name_item_top4',
+        sanitize_text_field( $_POST[ 'name_item_top4' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product4',
+        sanitize_text_field( $_POST[ 'image_product4' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top4',
+        sanitize_text_field( $_POST[ 'link_product4' ] )
+    );
+    //**********
+    update_term_meta(
+        $term_id,
+        'name_item_top5',
+        sanitize_text_field( $_POST[ 'name_item_top5' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product5',
+        sanitize_text_field( $_POST[ 'image_product5' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top5',
+        sanitize_text_field( $_POST[ 'link_product5' ] )
+    );
+    //***********
+    update_term_meta(
+        $term_id,
+        'name_item_top6',
+        sanitize_text_field( $_POST[ 'name_item_top6' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product6',
+        sanitize_text_field( $_POST[ 'image_product6' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top6',
+        sanitize_text_field( $_POST[ 'link_product6' ] )
+    );
+    //**********
+    update_term_meta(
+        $term_id,
+        'name_item_top7',
+        sanitize_text_field( $_POST[ 'name_item_top7' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product7',
+        sanitize_text_field( $_POST[ 'image_product7' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top7',
+        sanitize_text_field( $_POST[ 'link_product7' ] )
+    );
+    //*******
+    update_term_meta(
+        $term_id,
+        'name_item_top8',
+        sanitize_text_field( $_POST[ 'name_item_top8' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'image_product8',
+        sanitize_text_field( $_POST[ 'image_product8' ] )
+    );
+
+    update_term_meta(
+        $term_id,
+        'link_item_top8',
+        sanitize_text_field( $_POST[ 'link_product8' ] )
+    );
+
+
+
+}
+
+
+// ================================= Custom Post Type Taxonomies =================================
+function crunchify_create_the_attaction_taxonomy() {
+    register_taxonomy(
+        'brand',  					// This is a name of the taxonomy. Make sure it's not a capital letter and no space in between
+        'product',        			//post type name
+        array(
+            'hierarchical' => true,
+            'label' => 'برند',  	//Display name
+            'query_var' => true,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'attraction')
+        )
+    );
+}
+add_action( 'init', 'crunchify_create_the_attaction_taxonomy');

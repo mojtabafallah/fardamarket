@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php use app\classes\Assets;
+use app\classes\Custom_walker;
 use app\controller\MenuController; ?>
 <head>
     <meta charset="UTF-8">
@@ -14,7 +15,7 @@ use app\controller\MenuController; ?>
     <link rel="stylesheet" href="<?php echo Assets::css('style.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('responsive.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('simple-scrollbar.css'); ?>">
-<?php wp_head();?>
+    <?php wp_head(); ?>
 
 </head>
 
@@ -27,17 +28,20 @@ use app\controller\MenuController; ?>
             <div class="row_custom">
                 <div class="header">
                     <div class="col-12 col-md-3 col-lg-2 col-xl-1 header_logo">
-                        <a href="<?php echo home_url()?>">
-                        <img src="<?php echo Assets::image('Group 16541@2x.png'); ?>" alt="">
+                        <a href="<?php echo home_url() ?>">
+                            <img src="<?php echo Assets::image('Group 16541@2x.png'); ?>" alt="">
                         </a>
                     </div>
                     <div class="col-12 col-md-8 col-lg-4  header_form_section">
 
-                        <form action="<?php echo home_url()?>" role="search" method="get" class="header_form">
-                            <input type="text" name="s" id="search_input" placeholder="دنبال چی می گردی ؟" value="<?php if(isset($_GET['s'])) echo $_GET['s']?>">
+                        <form action="<?php echo home_url() ?>" role="search" method="get" class="header_form">
+                            <input type="text" name="s" id="search_input" autocomplete="off"
+                                   placeholder="دنبال چی می گردی ؟"
+                                   value="<?php if (isset($_GET['s'])) echo $_GET['s'] ?>">
                             <div class="search_result">
                                 <ul class="search_result_category">
-                                    <li><a href="#">نتیجه جست و جو  در دسته بندی   <span class="search_result_category_link">(لینک)</span></a></li>
+                                    <li><a href="#">نتیجه جست و جو در دسته بندی <span
+                                                    class="search_result_category_link">(لینک)</span></a></li>
                                 </ul>
                                 <ul id="search_result_info" class="search_result_info">
                                     <li><a href="#">مکمل بدنسازی لورم ایپسوم 1</a></li>
@@ -51,12 +55,25 @@ use app\controller\MenuController; ?>
                     </div>
 
                     <div class="col-12 col-lg-5  header_login">
-                        <a href="#">
-                            <button><span class="login_btn"></span> ورود به حساب کاربری</button>
-                        </a>
-                        <a href="#">
-                            <button class="user"><span></span>زینب تاجری</button>
-                        </a>
+                        <?php if (!is_user_logged_in()): ?>
+                            <a href="<?php echo get_site_url() . '/ورود' ?>">
+                                <button><span class="login_btn"></span>
+
+                                    ورود به حساب کاربری
+
+
+                                </button>
+                            </a>
+                        <?php else: ?>
+                            <a href="<?php echo get_site_url() . '/my-account' ?>">
+                                <button><span class="login_btn"></span>
+
+                                    حساب کاربری من
+
+
+                                </button>
+                            </a>
+                        <?php  endif; ?>
                         <span class="divider"></span>
                         <a href="#">
                             <button class="cart_btn"><span class="cart_custom"></span> سبد خرید</button>
@@ -103,43 +120,12 @@ use app\controller\MenuController; ?>
             <div class="header d-none d-md-block">
                 <div class="col-12 col-xl-8">
                     <nav>
-                        <ul class="main_menu">
-
-                            <?php
-                            $str=' <div class="row">
-
-                                            <div class="container-fluid megamenu">
-                                                <div class="megamenu_title">
-                                                    <span>نمایش همه دسته بندی مکمل غذایی</span>
-
-                                                </div>
-                                                <div class="col-3 col-md-4">
-                                                    <ul>
-                                                        <li><a href="#">متن تستی</a></li>
-                                                        <li><a href="#">متن تستی</a></li>
-                                                        <li><a href="#">متن تستی</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-3 col-md-4">
-                                                    <ul>
-                                                        <li><a href="#">متن تستی</a></li>
-                                                        <li><a href="#">متن تستی</a></li>
-                                                        <li><a href="#">متن تستی</a></li>
-
-                                                    </ul>
-                                                </div>
-                                                <div class="col-6 col-md-4 megamenu_image">
-                                                    <img src="img/1347@2x.png" alt="">
-                                                </div>
-                                            </div>
-                                        </div>';
-                            wp_nav_menu(array(
-                                'theme_location' => 'header-menu',
-                                'walker'=>new AWP_Menu_Walker
-                            )); ?>
-
-
-                        </ul>
+                        <?php
+                        wp_nav_menu(array(
+                            'theme_location' => 'header-menu',
+                            'menu_class'=>'main_menu',
+                            'walker'=> new Custom_walker()
+                        )); ?>
                     </nav>
                 </div>
             </div>

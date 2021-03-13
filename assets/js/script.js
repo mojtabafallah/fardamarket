@@ -22,6 +22,7 @@ jQuery(document).ready(function () {
         var product_id = jQuery('#product_id').text();
         var data = new FormData();
         data.append('add_to_cart', product_id);
+
         var xhr = new XMLHttpRequest();
         xhr.open('POST', ' http://localhost:81/fm/wp-content/themes/FardaMarket/assets/js/ajax_file_process.php', true);
         xhr.onload = function () {

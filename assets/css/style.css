@@ -78,6 +78,7 @@ h3 {
     font-family: IRANSans_medium;
 }
 
+
 /* .col-8 {
     padding-right: 28px;
 } */
@@ -161,7 +162,7 @@ header {
 .header_form button {
     outline: none !important;
     border: none;
-    padding: 13px 15px;
+    padding: 9px 15px 6px 15px;
     background-color: #10ac84;
     color: white;
     font-size: 24px;
@@ -207,6 +208,7 @@ span.fa.fa-times {
     cursor: pointer;
 }
 
+
 /* close icon when searching into the input */
 
 .search_result {
@@ -225,6 +227,7 @@ span.fa.fa-times {
     visibility: hidden;
     opacity: 0;
 }
+
 
 /*
 .header_form:hover .search_result {
@@ -277,9 +280,17 @@ ul.search_result_category .search_result_category_link {
     padding-left: 10px;
     padding-right: 15px;
 }
-.container-fluid.megamenu ul li{width: 25%;float: right}
 
-.container-fluid.megamenu ul{display: block}
+.container-fluid.megamenu ul li {
+    width: 25%;
+    float: right
+}
+
+.container-fluid.megamenu ul {
+    display: block
+}
+
+
 /* start of user */
 
 .header_login button.user {
@@ -318,6 +329,7 @@ ul.search_result_category .search_result_category_link {
     top: -3px;
 }
 
+
 /* end of user  */
 
 .header_login span.login_btn {
@@ -334,7 +346,7 @@ ul.search_result_category .search_result_category_link {
     position: absolute;
     background-image: url('../img/sprit.png');
     top: -16px;
-    right: -13px;
+    right: 18px;
     width: 45px;
     height: 38px;
 }
@@ -367,7 +379,7 @@ ul.search_result_category .search_result_category_link {
     position: absolute;
     background-image: url('../img/sprit.png');
     top: -15px;
-    right: 0px;
+    right: 32px;
     width: 45px;
     height: 38px;
     background-position-x: -75px;
@@ -378,6 +390,7 @@ ul.search_result_category .search_result_category_link {
     height: 50px;
     margin: 0px 15px;
 }
+
 
 /*end of top of the header */
 
@@ -405,7 +418,7 @@ ul.main_menu li {
     list-style: none;
 }
 
-ul.main_menu li:hover > a {
+ul.main_menu li:hover>a {
     color: #10AC84;
     font-family: IRANSans_medium;
 }
@@ -424,7 +437,7 @@ ul li ul li a {
     position: relative;
 }
 
-ul li ul li > a::before {
+ul li ul li>a::before {
     content: '\f053';
     font-family: FontAwesome;
     position: absolute;
@@ -434,7 +447,7 @@ ul li ul li > a::before {
     top: 7px;
 }
 
-ul li ul li:nth-child(1) > a::after {
+ul li ul li:nth-child(1)>a::after {
     content: '';
     position: absolute;
     width: 45px;
@@ -446,7 +459,7 @@ ul li ul li:nth-child(1) > a::after {
     background-position-x: 65%;
 }
 
-ul li ul li:nth-child(2) > a::after {
+ul li ul li:nth-child(2)>a::after {
     content: '';
     position: absolute;
     width: 45px;
@@ -458,7 +471,7 @@ ul li ul li:nth-child(2) > a::after {
     background-position-x: 61%;
 }
 
-ul li ul li:nth-child(3) > a::after {
+ul li ul li:nth-child(3)>a::after {
     content: '';
     position: absolute;
     width: 36px;
@@ -470,11 +483,11 @@ ul li ul li:nth-child(3) > a::after {
     background-position-x: 69%;
 }
 
-ul.main_menu > li {
+ul.main_menu>li {
     position: relative;
 }
 
-ul.main_menu > li::before {
+ul.main_menu>li::before {
     content: '';
     position: absolute;
     width: 300px;
@@ -489,7 +502,7 @@ ul.main_menu > li::before {
     display: inline-block;
 }
 
-ul.main_menu > li:hover::before {
+ul.main_menu>li:hover::before {
     width: 100%;
 }
 
@@ -704,17 +717,17 @@ ul li ul li ul li a::after {
     content: '' !important;
 }
 
-ul li ul li ul li:nth-child(1) > a::after {
+ul li ul li ul li:nth-child(1)>a::after {
     content: '';
     display: none;
 }
 
-ul li ul li ul li:nth-child(2) > a::after {
+ul li ul li ul li:nth-child(2)>a::after {
     content: '';
     display: none;
 }
 
-ul li ul li ul li:nth-child(3) > a::after {
+ul li ul li ul li:nth-child(3)>a::after {
     content: '';
     display: none;
 }
@@ -744,6 +757,7 @@ ul li ul li ul li:hover {
     /* margin-bottom: 45px; */
     margin-top: -34px;
 }
+
 
 /* end of header menu */
 
@@ -850,8 +864,7 @@ ul li ul li ul li:hover {
     margin-bottom: 10px;
 }
 
-.ham .bar2 {
-}
+.ham .bar2 {}
 
 .ham .bar3 {
     margin-top: 10px;
@@ -1017,6 +1030,7 @@ ul.main_menu_second li a {
     float: right;
 }
 
+
 /*
     .mobile_menu_section {
         width: 100%;
@@ -1078,6 +1092,7 @@ ul.main_menu_second li a {
     position: relative;
     transition: all 0.3s;
 }
+
 
 /*
     .mobile_menu_sidebar ul li:hover {
@@ -1454,6 +1469,7 @@ ul.main_menu_second li a {
     color: #555555;
     font-size: 13px;
 }
+
 
 /* end of header slider */
 
@@ -1975,7 +1991,7 @@ ol.flickity-page-dots {
     padding: 50px 0;
 }
 
-.go_top_section > div {
+.go_top_section>div {
     box-sizing: content-box;
     width: max-content;
     margin: 0 auto;
@@ -2143,11 +2159,11 @@ ol.flickity-page-dots {
     float: right;
 }
 
-.instegram_images a:nth-child(4) > div {
+.instegram_images a:nth-child(4)>div {
     border-radius: 0 0 25px 0;
 }
 
-.instegram_images a:nth-child(6) > div {
+.instegram_images a:nth-child(6)>div {
     border-radius: 0 0 0px 25px;
 }
 
@@ -2415,6 +2431,7 @@ footer {
     background-color: #ECEFF1;
 }
 
+
 /* end of styles for index.html*/
 
 .breadcrumb_section {
@@ -2586,7 +2603,7 @@ footer {
     top: -34%;
 }
 
-.product_img ul li:hover a > span.compare {
+.product_img ul li:hover a>span.compare {
     visibility: visible;
     opacity: 1;
 }
@@ -2850,7 +2867,7 @@ span.real_price {
     border-radius: 0px 50px 0 0;
 }
 
-.tab_custom #tabs > div {
+.tab_custom #tabs>div {
     background-color: #fff;
     width: 100%;
     height: auto;
@@ -2876,7 +2893,7 @@ span.real_price {
     float: right;
 }
 
-.tab_custom #tabs > div p {
+.tab_custom #tabs>div p {
     font-size: 18px;
     font-family: IRANSans_light;
     line-height: 40px;
@@ -3117,6 +3134,7 @@ span.real_price {
     position: relative;
 }
 
+
 /* end of the second page */
 
 .user_Regestration {
@@ -3260,14 +3278,14 @@ span.real_price {
     border: 1px solid #10AC84;
 }
 
-.tab_custom2 form input[type="text"]:focus ~ span.enter_user_mobile {
+.tab_custom2 form input[type="text"]:focus~span.enter_user_mobile {
     margin-top: -29px;
     color: #10AC84;
     background-color: #fff;
     padding: 0 10px;
 }
 
-.tab_custom2 form input[type="password"]:focus ~ span.enter_user_password {
+.tab_custom2 form input[type="password"]:focus~span.enter_user_password {
     margin-top: -29px;
     color: #10AC84;
     background-color: #fff;
@@ -3283,14 +3301,14 @@ span.real_price {
     outline: solid transparent 2px !important;
 }
 
-.tab_custom2 form input[type="text"]:valid ~ span.enter_user_mobile {
+.tab_custom2 form input[type="text"]:valid~span.enter_user_mobile {
     margin-top: -29px;
     color: #10AC84;
     background-color: #fff;
     padding: 0 10px;
 }
 
-.tab_custom2 form input[type="password"]:valid ~ span.enter_user_password {
+.tab_custom2 form input[type="password"]:valid~span.enter_user_password {
     margin-top: -29px;
     color: #10AC84;
     background-color: #fff;
@@ -3344,6 +3362,7 @@ span.real_price {
     margin-right: 19px;
 }
 
+
 /* Hide the browser's default checkbox */
 
 .checkbox_container input {
@@ -3353,6 +3372,7 @@ span.real_price {
     height: 0;
     width: 0;
 }
+
 
 /* Create a custom checkbox */
 
@@ -3366,12 +3386,16 @@ span.real_price {
     border: 1px solid #10AC84;
 }
 
+
 /* On mouse-over, add a grey background color */
+
+
 /* When the checkbox is checked, add a blue background */
 
-.checkbox_container input:checked ~ .checkmark {
+.checkbox_container input:checked~.checkmark {
     background-color: #fff;
 }
+
 
 /* Create the checkmark/indicator (hidden when not checked) */
 
@@ -3381,11 +3405,13 @@ span.real_price {
     display: none;
 }
 
+
 /* Show the checkmark when checked */
 
-.checkbox_container input:checked ~ .checkmark:after {
+.checkbox_container input:checked~.checkmark:after {
     display: block;
 }
+
 
 /* Style the checkmark/indicator */
 
@@ -3550,6 +3576,7 @@ span.real_price {
     max-width: 100%;
 }
 
+
 /* start of the 3 steps login form */
 
 #msform {
@@ -3573,11 +3600,13 @@ span.real_price {
     overflow: hidden;
 }
 
+
 /*Hide all except first fieldset*/
 
 #msform fieldset:not(:first-of-type) {
     display: none;
 }
+
 
 /*progressbar*/
 
@@ -3665,7 +3694,10 @@ span.real_price {
     content: none;
 }
 
+
 /*marking active/completed steps green*/
+
+
 /*The number of the step and the connector before it = green*/
 
 #progressbar li.active:after {
@@ -3782,14 +3814,14 @@ fieldset input[type="submit"]:hover {
     top: 30px;
 }
 
-.phone_email_section .password1:focus ~ .enter_user_mobile_3 {
+.phone_email_section .password1:focus~.enter_user_mobile_3 {
     margin-top: -29px;
     color: #10AC84;
     padding: 0 10px;
     background-color: #fff;
 }
 
-.phone_email_section .password1:valid ~ .enter_user_mobile_3 {
+.phone_email_section .password1:valid~.enter_user_mobile_3 {
     margin-top: -29px;
     color: #10AC84;
     padding: 0 10px;
@@ -3815,7 +3847,7 @@ span.repeat_passoword {
     transition: all 0.3s;
 }
 
-.phone_email_section .password2:focus ~ span.repeat_passoword {
+.phone_email_section .password2:focus~span.repeat_passoword {
     margin-top: -29px;
     color: #10AC84;
     padding: 0 10px;
@@ -3884,6 +3916,7 @@ span.repeat_passoword {
 .divider {
     border: none;
 }
+
 
 /* end of the login section */
 
@@ -4138,7 +4171,7 @@ span.arrow_custom {
     margin-right: 16px;
 }
 
-.checkbox_container_container2 input[type="checkbox"]:checked ~ span {
+.checkbox_container_container2 input[type="checkbox"]:checked~span {
     border: 1px solid #10AC84;
 }
 
@@ -4403,37 +4436,37 @@ label.switch {
     background-color: #10AC84;
 }
 
-label.switch > span {
+label.switch>span {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-label.switch > input[type="checkbox"] {
+label.switch>input[type="checkbox"] {
     opacity: 0;
     position: absolute;
 }
 
-label.switch > span:before,
-label.switch > span:after {
+label.switch>span:before,
+label.switch>span:after {
     content: "";
     cursor: pointer;
     position: absolute;
 }
 
-label.switch > input[type="checkbox"]:focus ~ span {
+label.switch>input[type="checkbox"]:focus~span {
     /* box-shadow: 0 0 0 4px #43b556; */
 }
 
-label.switch > input[type="checkbox"]:checked:focus ~ span {
+label.switch>input[type="checkbox"]:checked:focus~span {
     /* transform: translate3d(-101%, -50%, 0); */
 }
 
-label.switch > span {
+label.switch>span {
     border-radius: 60px;
 }
 
-label.switch > span:before {
+label.switch>span:before {
     width: 100%;
     height: 108%;
     box-sizing: border-box;
@@ -4446,7 +4479,7 @@ label.switch > span:before {
     padding: 12px;
 }
 
-label.switch > span:after {
+label.switch>span:after {
     top: 50%;
     z-index: 3;
     transition: transform .4s cubic-bezier(0.44, -0.12, 0.07, 1.15);
@@ -4461,12 +4494,12 @@ label.switch > span:after {
     height: 18px;
 }
 
-label.switch > input[type="checkbox"]:checked ~ span:before {
+label.switch>input[type="checkbox"]:checked~span:before {
     transform: scale(0);
     opacity: .7;
 }
 
-label.switch > input[type="checkbox"]:checked ~ span:after {
+label.switch>input[type="checkbox"]:checked~span:after {
     transform: translate3d(-213%, -50%, 0);
 }
 
@@ -5016,6 +5049,7 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
     height: 72px;
     overflow: hidden;
 }
+
 
 /* article section  */
 
@@ -5694,14 +5728,14 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
     border: 1px solid #008eb2 !important;
 }
 
-.contact_input input:focus ~ span {
+.contact_input input:focus~span {
     top: -6%;
     z-index: 9999999999999999999;
     right: 20px;
     background-color: #fff;
 }
 
-.contact_input input:valid ~ span {
+.contact_input input:valid~span {
     top: -6%;
     z-index: 9999999999999999999;
     right: 20px;
@@ -5757,7 +5791,7 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
     margin-bottom: 20px;
 }
 
-.social_media > span {
+.social_media>span {
     display: flex;
     align-items: center;
     flex-direction: row-reverse;
@@ -5904,6 +5938,7 @@ label.switch > input[type="checkbox"]:checked ~ span:after {
     -webkit-appearance: none;
     margin: 0;
 }
+
 
 /* Firefox */
 

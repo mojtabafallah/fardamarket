@@ -1,55 +1,70 @@
-function maketimer2(a,b,c) {
+jQuery(document).ready(function() {
+    jQuery('.plus').click(function() {
+        var valCustom = jQuery('.quantity_number_woocomerce').val();
 
-    var countDownDate = new Date(b).getTime();
+        valCustom++;
+        jQuery('.quantity_number_woocomerce').attr({ 'value': valCustom });
+    });
 
+    jQuery('.minus').click(function() {
 
-    // Get today's date and time
-    var now = new Date().getTime();
+        var valCustom = jQuery('.quantity_number_woocomerce').val();
+        if (valCustom >= 2) {
+            valCustom--;
+            jQuery('.quantity_number_woocomerce').attr({ 'value': valCustom });
+        }
+    });
 
-    // Find the distance between now and the count down date
-    var distance = countDownDate - now;
-
-    // Time calculations for days, hours, minutes and seconds
-    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Output the result in an element with id="demo"
-
-    if (!isNaN(days) && !isNaN(hours) && !isNaN(minutes) && !isNaN(seconds))
-    {
-      var x=  document.getElementsByClassName("days-"+c);
-      x[0].innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
-      x[1].innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+});
+jQuery(document).ready(function() {
+    var user_optionsl = document.querySelectorAll('.user_options ul li').length;
+    for (var i = 0; i < user_optionsl; i++) {
+        document.getElementsByClassName('userop')[i].addEventListener('click', userOption);
     }
 
+    function userOption() {
+        var optionCustom = $(this).attr('id');
+        jQuery('.userop a').removeClass('active');
+        jQuery('.user_order').css({ 'display': 'none' });
+        jQuery("div" + "#" + optionCustom).css({ 'display': 'block' });
+        jQuery('li#' + optionCustom + " " + "a").addClass('active');
+    }
+});
 
-        // If the count down is over, write some text
-        if (distance < 0) {
 
-            document.getElementsByClassName("demo").innerHTML = "تاریخی وجود ندارد";
+jQuery(document).ready(function() {
+    jQuery('.cart_total').theiaStickySidebar({
+
+    });
+});
+jQuery(document).ready(function() {
+    jQuery('.article_search_custom').theiaStickySidebar({
+        // Settings
+        additionalMarginTop: 10
+    });
+    jQuery('.article_related_post').theiaStickySidebar({
+        // Settings
+        additionalMarginTop: 10
+    });
+    jQuery('.article_search_custom').click(function() {
+        jQuery('html,body').animate({ 'scrollTop': '0' });
+    });
+    jQuery('.latest_article').theiaStickySidebar({
+        // Settings
+        additionalMarginTop: 10
+    });
+    $(window).scroll(myTopfunction);
+
+    function myTopfunction() {
+        if ($(window).scrollTop() >= 100) {
+            jQuery('.article_search_custom .fa-search').css({ 'display': 'flex' });
+        } else {
+            jQuery('.article_search_custom .fa-search').css({ 'display': 'none' });
         }
+    }
+});
 
 
-    // var interval = setInterval(function() {
-    //
-    //
-    //     var timer = timer2.split(':');
-    //     //by parsing integer, I avoid all extra string processing
-    //     var minutes = parseInt(timer[0], 10);
-    //     var seconds = parseInt(timer[1], 10);
-    //     --seconds;
-    //     minutes = (seconds < 0) ? --minutes : minutes;
-    //     if (minutes < 0) clearInterval(interval);
-    //     seconds = (seconds < 0) ? 59 : seconds;
-    //     seconds = (seconds < 10) ? '0' + seconds : seconds;
-    //     //minutes = (minutes < 10) ?  minutes : minutes;
-    //     $('.countdown').html(minutes + ':' + seconds);
-    //     timer2 = minutes + ':' + seconds;
-    // });
-
-}
 $(document).ready(function(e) {
     try {
         $("body select").msDropDown();
@@ -224,27 +239,27 @@ $(".ham_close").click(function() {
 var lowerSlider = document.querySelector("#lower"),
     upperSlider = document.querySelector("#upper");
 (document.querySelector(".from").innerHTML = upperSlider.value),
-(document.querySelector(".to").innerHTML = lowerSlider.value);
+    (document.querySelector(".to").innerHTML = lowerSlider.value);
 var lowerVal = parseInt(lowerSlider.value),
     upperVal = parseInt(upperSlider.value);
 (upperSlider.oninput = function() {
     (lowerVal = parseInt(lowerSlider.value)),
     (upperVal = parseInt(upperSlider.value)) < lowerVal + 4 &&
-        ((lowerSlider.value = upperVal - 4),
-            lowerVal == lowerSlider.min && (upperSlider.value = 4)),
+    ((lowerSlider.value = upperVal - 4),
+    lowerVal == lowerSlider.min && (upperSlider.value = 4)),
         (document.querySelector(".from").innerHTML =
             "تا<div class='fromPrice'>" + this.value + "</div>تومان");
 }),
-(lowerSlider.oninput = function() {
-    (lowerVal = parseInt(lowerSlider.value)),
-    (upperVal = parseInt(upperSlider.value)),
-    lowerVal > upperVal - 4 &&
+    (lowerSlider.oninput = function() {
+        (lowerVal = parseInt(lowerSlider.value)),
+            (upperVal = parseInt(upperSlider.value)),
+        lowerVal > upperVal - 4 &&
         ((upperSlider.value = lowerVal + 4),
-            upperVal == upperSlider.max &&
-            (lowerSlider.value = parseInt(upperSlider.max) - 4)),
-        (document.querySelector(".to").innerHTML =
-            "از<div class='toPrice'>" + this.value + "</div>تومان");
-});
+        upperVal == upperSlider.max &&
+        (lowerSlider.value = parseInt(upperSlider.max) - 4)),
+            (document.querySelector(".to").innerHTML =
+                "از<div class='toPrice'>" + this.value + "</div>تومان");
+    });
 var appendNumber = 4;
 var prependNumber = 1;
 var swiper = new Swiper('.swiper-container2', {

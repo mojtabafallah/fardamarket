@@ -27,7 +27,7 @@ $remotePost = new RemotePost("mojtaba13730", "1250345261");
     <?php
     if (isset($_POST['next'])) {
         ($remotePost->SendCode($_POST['mobile'], "سایت فردا مارکت"));
-        $_SESSION['mobile']=$_POST['mobile'];
+        $_SESSION['mobile'] = $_POST['mobile'];
         ?>
         <script type="text/javascript">
             jQuery(function () {
@@ -46,27 +46,27 @@ $remotePost = new RemotePost("mojtaba13730", "1250345261");
                     $('#tabs-22').trigger('click');
                 });
             </script>
-            <?php
+        <?php
         }else
         {
-            ?>
+        ?>
             <script type="text/javascript">
-      alert("کد اعتبار سنجی اشتباه است.")
+                alert("کد اعتبار سنجی اشتباه است.")
             </script>
             <?php
         }
     }
-    if(isset($_POST['btn_finish']))
-    {
-        if ($_POST['password']==$_POST['repassword'])
-        {
-            wp_create_user($_SESSION['mobile'],$_POST['repassword']);
+    if (isset($_POST['btn_finish'])) {
+        if ($_POST['password'] == $_POST['repassword']) {
+            wp_create_user($_SESSION['mobile'], $_POST['repassword']);
+            $path = "Location:" . get_home_url() . '/my-account/';
+            header($path);
+            exit;
 
-        }else
-        {
+        } else {
             ?>
             <script type="text/javascript">
-      alert("کلمه عبور یکسان نیست.")
+                alert("کلمه عبور یکسان نیست.")
             </script>
             <?php
         }
@@ -295,14 +295,17 @@ $remotePost = new RemotePost("mojtaba13730", "1250345261");
                                 <form id="msform" action="" method="post">
                                     <fieldset>
                                         <div class="phone_email_section">
-                                            <input name="password" type="password" placeholder="" required class="password1"><span
+                                            <input name="password" type="password" placeholder="" required
+                                                   class="password1"><span
                                                     class="password password1"></span> <span
                                                     class="enter_user_mobile enter_user_mobile_3">رمز عبور خود را وارد کنید</span>
-                                            <input name="repassword" type="password" placeholder="" required class="password2"><span
+                                            <input name="repassword" type="password" placeholder="" required
+                                                   class="password2"><span
                                                     class="password password2"></span><span class="repeat_passoword">رمز عبور خود را تکرار کنید</span>
                                         </div>
 
-                                        <input type="submit" name="btn_finish" class="next action-button" value="ثبت نام"/>
+                                        <input type="submit" name="btn_finish" class="next action-button"
+                                               value="ثبت نام"/>
                                         <div class="rule">
                                             <p>
                                                 با ورود و یا ثبت نام در سایت فردامارکت شما<span> <a> شرایط و قوانین </a> </span>
@@ -379,15 +382,17 @@ $remotePost = new RemotePost("mojtaba13730", "1250345261");
             </div>
         </div>
     </body>
-    <script src="<?php echo Assets::js('bootstrap.min.js') ?>"></script>
-    <script src="<?php echo Assets::js('jquery.min.js') ?>"></script>
-    <script src="<?php echo Assets::js('popper.min.js') ?>"></script>
-    <script src="<?php echo Assets::js('swiper_bundle.js') ?>"></script>
-    <script src="<?php echo Assets::js('myfunction.js') ?>"></script>
-    <script src="<?php echo Assets::js('flickity.pkgd.min.js') ?>"></script>
-    <script src="<?php echo Assets::js('jquery-ui.js') ?>"></script>
-    <script src="<?php echo Assets::js('jquery.easing.min.js') ?>"></script>
-    <script src="<?php echo Assets::js('jquery.dd.min.js') ?>"></script>
+    <script src="<?php echo Assets::js('bootstrap.min.js'); ?> "></script>
+    <script src="<?php echo Assets::js('jquery.min.js'); ?> "></script>
+    <script src="<?php echo Assets::js('popper.min.js'); ?>"></script>
+
+    <script src="<?php echo Assets::js('swiper_bundle.js'); ?>"></script>
+    <script src="<?php echo Assets::js('myfunction.js'); ?>"></script>
+    <script src="<?php echo Assets::js('flickity.pkgd.min.js'); ?>"></script>
+    <script src="<?php echo Assets::js('jquery-ui.js'); ?>"></script>
+    <script src="<?php echo Assets::js('jquery.easing.min.js'); ?>"></script>
+    <script src="<?php echo Assets::js('jquery.dd.min.js'); ?>"></script>
+    <script src="<?php echo Assets::js('theia-sticky-sidebar.js"'); ?>"></script>
 
     </html>
 <?php

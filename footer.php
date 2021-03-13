@@ -138,15 +138,23 @@
 </footer>
 </div>
 </body>
-<script src="<?php echo Assets::js('jquery.min.js'); ?> "></script>
-<script src="<?php echo Assets::js('bootstrap.min.js'); ?> "></script>
 
+<script src="<?php echo Assets::js('bootstrap.min.js'); ?> "></script>
+<script src="<?php echo Assets::js('jquery.min.js'); ?> "></script>
+<script src="<?php echo Assets::js('fontawesome.min.js'); ?>"></script>
 <script src="<?php echo Assets::js('popper.min.js'); ?>"></script>
+
 <script src="<?php echo Assets::js('swiper_bundle.js'); ?>"></script>
 <script src="<?php echo Assets::js('myfunction.js'); ?>"></script>
 <script src="<?php echo Assets::js('flickity.pkgd.min.js'); ?>"></script>
-<script src="<?php echo Assets::js('jquery.dd.min.js'); ?>"></script>
 <script src="<?php echo Assets::js('jquery-ui.js'); ?>"></script>
+<script src="<?php echo Assets::js('jquery.easing.min.js'); ?>"></script>
+<script src="<?php echo Assets::js('jquery.dd.min.js'); ?>"></script>
+<script src="<?php echo Assets::js('theia-sticky-sidebar.js'); ?>"></script>
+<script src="<?php echo Assets::js('script.js'); ?>"></script>
+
+
+
 <script type="text/javascript">
 
         $('#search_input').keyup(function () {
@@ -172,10 +180,6 @@
             $('.search_result').css("visibility","hidden")
                 .css("opacity","0");
         });
-
-
-
-
 </script>
 
 <?php wp_footer(); ?>

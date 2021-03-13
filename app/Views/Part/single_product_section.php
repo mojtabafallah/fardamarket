@@ -8,31 +8,28 @@
 
                 $args = array(
                     'post_type' => 'product',
-
                     'meta_key' => 'total_sales',
                     'orderby' => 'meta_value_num',
                 );
 
+                global $product;
+                $product_id = $product->get_id();
 
-                $loop = new WP_Query($args);
-                if ($loop->have_posts()) {
-                    while ($loop->have_posts()) : $loop->the_post();
-                        global $product;
-                        $product_id = $product->get_id();
-                        $product = new WC_product($product_id);
-                        $attachment_ids = $product->get_gallery_image_ids();
-                        foreach ($attachment_ids as $attachment_id) {
-                            // Display the image URL
-                            ?>
-                            <img src="<?php echo $Original_image_url = wp_get_attachment_url($attachment_id); ?>"
-                                 alt="">
-                            <?php
-                        }
-                    endwhile;
-                } else {
-                    echo __('محصولی موجود نیست');
+                $product = new WC_product($product_id);
+                $attachment_ids = $product->get_gallery_image_ids();
+
+                foreach ($attachment_ids as $attachment_id) {
+                    // Display the image URL
+                    ?>
+                    <img class="small_image_product"
+                         src="<?php echo $Original_image_url = wp_get_attachment_url($attachment_id) ?>" alt="">
+                    <?php
+
+
+                    // Display Image instead of URL
+                    // echo wp_get_attachment_image($attachment_id, 'full');
+
                 }
-                wp_reset_postdata();
                 ?>
 
             </div>
@@ -48,12 +45,27 @@
                 $id_cate = $data['category_ids'];
                 //var_dump($data);
                 ?>
-                <img src="<?php the_post_thumbnail_url() ?>" alt="">
+                <img class="image_main_product" src="<?php the_post_thumbnail_url() ?>" alt="">
+                <p id="user_id" style="display: none"><?php echo get_current_user_id(); ?></p>
+                <p id="product_id" style="display: none"><?php echo get_the_ID(); ?></p>
                 <ul>
 
                     <li><a href="#" class="share"><span class="share"></span></a></li>
-                    <li><a href="#" class="interesting"><span class="interesting"></span></a></li>
-                    <li><a href="#" class="compare"><span class="compare">مقایسه کن</span></a></li>
+                    <li><a href="#" id="favorite">
+                            <?php
+                            $havemeta = get_user_meta(get_current_user_id(), 'favorites', false);
+
+                            if (in_array(get_the_ID(), $havemeta)) {
+
+                                echo "<i class='fas fa-heart' style='color: grey'></i>";
+                            } else {
+
+                                echo "<i class='fas fa-heart' style='color: red'></i>";
+                            }
+                            ?>
+                        </a></li>
+
+                    <li><span id="msg_add_fav"></span></li>
                 </ul>
             </div>
         </div>
@@ -64,7 +76,23 @@
 
             </div>
             <div class="product_title">
-                <span> <a href="#">کارن</a>نام برند</span>
+                <?php
+
+
+                $brands = get_the_terms(get_the_ID(), 'brand');
+
+                ?>
+                <span> <?php
+
+                    foreach ($brands as $brand) {
+                        echo '<a href="#">';
+
+
+                        echo $brand->name;
+
+                        echo '</a>';
+                    }
+                    ?>نام برند</span>
                 <span> <?php
 
                     foreach ($id_cate as $id) {
@@ -85,17 +113,22 @@
                 <?php
                 global $product;
                 $attributes = $product->get_attributes();
+                if (!empty( $attributes))
+                {
+                    $data1 = [];
+                    foreach ($attributes as $attribute) {
+                        $data1[] = $attribute->get_data();
+                    }
+                    echo $data1[0]['name'];
+                    echo ":";
+                    $dd = $data1[0]['options'];
+                    foreach ($dd as $d)
+                        echo $d;
+                }else
+                {
+                    echo"ویژگی درج نشده است";
+                }
 
-                $data1 =[];
-               foreach ($attributes as $attribute)
-               {
-                   $data1[]=$attribute->get_data();
-               }
-               echo $data1[0]['name'];
-               echo ":";
-               $dd=$data1[0]['options'];
-               foreach ($dd as $d)
-                echo $d;
                 ?>
 
 
@@ -107,19 +140,16 @@
                         <?php
                         global $product;
                         $attributes = $product->get_attributes();
-                        $data1 =[];
-                        foreach ($attributes as $attribute)
-                        {
-                            $data1[]=$attribute->get_data();
+                        $data1 = [];
+                        foreach ($attributes as $attribute) {
+                            $data1[] = $attribute->get_data();
                         }
 
-                        foreach ($data1 as $d)
-                        {
-                            $name= $d['name'];
+                        foreach ($data1 as $d) {
+                            $name = $d['name'];
                             echo "   <span>$name :";
-                            $option=$d['options'];
-                            foreach ($option as $opt)
-                            {
+                            $option = $d['options'];
+                            foreach ($option as $opt) {
                                 echo " $opt ";
                             }
                             echo "</span>";
@@ -130,22 +160,22 @@
                 </div>
 
                 <div class="product_price">
+                    <?php if(!empty($data['sale_price'])):?>
                     <span class="real_price"><?php echo $data['regular_price'] ?>تومان</span>
                     <span class="product_price_off"> <?php
                         $off = ($data['sale_price'] * 100) / $data['regular_price'];
                         $off = 100 - $off;
                         echo $off;
                         ?>%</span>
+                    <?php endif;?>
 
                 </div>
                 <div class="product_realPrice">
+                    <span class="price"><?php if(!empty($data['sale_price'])) echo $data['sale_price']; else echo $data['regular_price']; ?></span>
                     <span>تومان </span>
-                    <span class="price"><?php echo $data['sale_price'] ?></span>
                 </div>
                 <div class="buy_button">
-                    <a href="#">
-                        <?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
-
+                    <a href="#" id="add_to_cart">
                         <button><span class="fa fa-plus"></span>افزودن به سبد خرید</button>
                     </a>
                 </div>

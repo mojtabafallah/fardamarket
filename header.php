@@ -4,6 +4,7 @@
 use app\classes\Custom_walker;
 use app\controller\MenuController; ?>
 <head>
+    <?php wp_head(); ?>
     <meta charset="UTF-8">
     <title>Farda</title>
     <link rel="stylesheet" href="<?php echo Assets::css('bootstrap-rtl.min.css'); ?>">
@@ -15,7 +16,9 @@ use app\controller\MenuController; ?>
     <link rel="stylesheet" href="<?php echo Assets::css('style.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('responsive.css'); ?>">
     <link rel="stylesheet" href="<?php echo Assets::css('simple-scrollbar.css'); ?>">
-    <?php wp_head(); ?>
+
+    <link rel="stylesheet" href="<?php echo Assets::css('all.css'); ?>">
+
 
 </head>
 
@@ -58,7 +61,6 @@ use app\controller\MenuController; ?>
                         <?php if (!is_user_logged_in()): ?>
                             <a href="<?php echo get_site_url() . '/ورود' ?>">
                                 <button><span class="login_btn"></span>
-
                                     ورود به حساب کاربری
 
 
@@ -75,7 +77,7 @@ use app\controller\MenuController; ?>
                             </a>
                         <?php  endif; ?>
                         <span class="divider"></span>
-                        <a href="#">
+                        <a href="<?php echo get_site_url() . '/cart' ?>">
                             <button class="cart_btn"><span class="cart_custom"></span> سبد خرید</button>
 
                         </a>

@@ -188,7 +188,7 @@ get_header(); ?>
 
         </div>
     </div>
-    </div>
+
     <!-- end of login section -->
     <div class="container main_container">
         <div class="slider_offer slider_offer_2">
@@ -207,30 +207,28 @@ get_header(); ?>
                         $term = get_term_by('id', $id, 'product_cat');
                         $names_cate .= $term->name . '  ';
 
-
-                        $args = array(
-                            'post_type' => 'product',
-                            'post_status' => 'publish',
-                            'ignore_sticky_posts' => 1,
-                            'posts_per_page' => '12',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'product_cat',
-                                    'field' => 'term_id', //This is optional, as it defaults to 'term_id'
-                                    'terms' => $id,
-                                    'operator' => 'IN' // Possible values are 'IN', 'NOT IN', 'AND'.
-                                ),
-                                array(
-                                    'taxonomy' => 'product_visibility',
-                                    'field' => 'slug',
-                                    'terms' => 'exclude-from-catalog', // Possibly 'exclude-from-search' too
-                                    'operator' => 'NOT IN'
-                                )
-                            )
-                        );
-                        $products = new WP_Query($args);
-
                     }
+                    $args = array(
+                        'post_type' => 'product',
+                        'post_status' => 'publish',
+                        'ignore_sticky_posts' => 1,
+                        'posts_per_page' => '12',
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'product_cat',
+                                'field' => 'term_id', //This is optional, as it defaults to 'term_id'
+                                'terms' => $id,
+                                'operator' => 'IN' // Possible values are 'IN', 'NOT IN', 'AND'.
+                            ),
+                            array(
+                                'taxonomy' => 'product_visibility',
+                                'field' => 'slug',
+                                'terms' => 'exclude-from-catalog', // Possibly 'exclude-from-search' too
+                                'operator' => 'NOT IN'
+                            )
+                        )
+                    );
+                    $products = new WP_Query($args);
                     ?>
 
 
@@ -275,8 +273,9 @@ get_header(); ?>
 
                                             </div>
                                         </div>
+                                    </a>
                                 </div>
-                                </a>
+
                             </div>
                         <?php endwhile; ?>
                         <?php wp_reset_postdata(); ?>

@@ -899,3 +899,13 @@ function crunchify_create_the_attaction_taxonomy() {
     );
 }
 add_action( 'init', 'crunchify_create_the_attaction_taxonomy');
+
+//--------------- redirect to my account after login ---------------------------
+    function redirect_after_login($user_login, $user)
+    {
+        $path = "Location: " . get_home_url() . '/my-account';
+        header($path);
+        exit;
+    }
+
+add_action('wp_login', 'redirect_after_login', 10, 2);

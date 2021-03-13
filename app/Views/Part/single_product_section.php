@@ -1,3 +1,4 @@
+<?php include "single_breadcrumb.php"?>
 <div class="container main_container">
     <div class="col-12 product_info">
         <div class="d-none d-sm-block  col-sm-4 col-md-4 col-lg-2">
@@ -42,7 +43,7 @@
 
 
                 $data = $product->get_data();
-                $id_cate = $data['category_ids'];
+
                 //var_dump($data);
                 ?>
                 <img class="image_main_product" src="<?php the_post_thumbnail_url() ?>" alt="">
@@ -54,6 +55,9 @@
                     <li><a href="#" id="favorite">
                             <?php
                             $havemeta = get_user_meta(get_current_user_id(), 'favorites', false);
+                           if (!empty($havemeta))
+                           {
+
 
                             if (in_array(get_the_ID(), $havemeta)) {
 
@@ -62,6 +66,10 @@
 
                                 echo "<i class='fas fa-heart' style='color: red'></i>";
                             }
+                           }else
+                           {
+                               echo "<i class='fas fa-heart' style='color: grey'></i>";
+                           }
                             ?>
                         </a></li>
 
@@ -83,28 +91,66 @@
 
                 ?>
                 <span> <?php
-
-                    foreach ($brands as $brand) {
-                        echo '<a href="#">';
+                    if (!empty($brans)) {
 
 
-                        echo $brand->name;
+                        foreach ($brands as $brand) {
+                            echo '<a href="#">';
 
-                        echo '</a>';
+
+                            echo $brand->name;
+
+                            echo '</a>';
+                        }
                     }
                     ?>نام برند</span>
-                <span> <?php
+                <span>             <?php
 
-                    foreach ($id_cate as $id) {
-                        echo '<a href="#">';
-                        if ($term = get_term_by('id', $id, 'product_cat')) {
+                    $taxonomy     = 'product_cat';
+                    $orderby      = 'name';
+                    $show_count   = 0;      // 1 for yes, 0 for no
+                    $pad_counts   = 0;      // 1 for yes, 0 for no
+                    $hierarchical = 1;      // 1 for yes, 0 for no
+                    $title        = '';
+                    $empty        = 0;
 
-                            echo $term->name;
+                    $args = array(
+                        'taxonomy'     => $taxonomy,
+                        'orderby'      => $orderby,
+                        'show_count'   => $show_count,
+                        'pad_counts'   => $pad_counts,
+                        'hierarchical' => $hierarchical,
+                        'title_li'     => $title,
+                        'hide_empty'   => $empty
+                    );
+                    $all_categories = get_categories( $args );
+                    foreach ($all_categories as $cat) {
+                        if($cat->category_parent == 0) {
+                            $category_id = $cat->term_id;
+                            echo '<a href="'. get_term_link($cat->slug, 'product_cat') .'">'. $cat->name .'</a>';
 
+                            $args2 = array(
+                                'taxonomy'     => $taxonomy,
+                                'child_of'     => 0,
+                                'parent'       => $category_id,
+                                'orderby'      => $orderby,
+                                'show_count'   => $show_count,
+                                'pad_counts'   => $pad_counts,
+                                'hierarchical' => $hierarchical,
+                                'title_li'     => $title,
+                                'hide_empty'   => $empty
+                            );
+                            $sub_cats = get_categories( $args2 );
+                            if($sub_cats) {
+                                foreach($sub_cats as $sub_category) {
+                                    echo  $sub_category->name ;
+                                }
+                            }
                         }
-                        echo '</a>';
                     }
+
                     ?>
+
                     دسته</span>
 
             </div>
@@ -113,8 +159,7 @@
                 <?php
                 global $product;
                 $attributes = $product->get_attributes();
-                if (!empty( $attributes))
-                {
+                if (!empty($attributes)) {
                     $data1 = [];
                     foreach ($attributes as $attribute) {
                         $data1[] = $attribute->get_data();
@@ -124,9 +169,8 @@
                     $dd = $data1[0]['options'];
                     foreach ($dd as $d)
                         echo $d;
-                }else
-                {
-                    echo"ویژگی درج نشده است";
+                } else {
+                    echo "ویژگی درج نشده است";
                 }
 
                 ?>
@@ -160,25 +204,28 @@
                 </div>
 
                 <div class="product_price">
-                    <?php if(!empty($data['sale_price'])):?>
-                    <span class="real_price"><?php echo $data['regular_price'] ?>تومان</span>
-                    <span class="product_price_off"> <?php
-                        $off = ($data['sale_price'] * 100) / $data['regular_price'];
-                        $off = 100 - $off;
-                        echo $off;
-                        ?>%</span>
-                    <?php endif;?>
+                    <?php if (!empty($data['sale_price'])): ?>
+                        <span class="real_price"><?php echo $data['regular_price'] ?>تومان</span>
+                        <span class="product_price_off"> <?php
+                            $off = ($data['sale_price'] * 100) / $data['regular_price'];
+                            $off = 100 - $off;
+                            echo $off;
+                            ?>%</span>
+                    <?php endif; ?>
 
                 </div>
                 <div class="product_realPrice">
-                    <span class="price"><?php if(!empty($data['sale_price'])) echo $data['sale_price']; else echo $data['regular_price']; ?></span>
+                    <span class="price"><?php if (!empty($data['sale_price'])) echo $data['sale_price']; else echo $data['regular_price']; ?></span>
                     <span>تومان </span>
                 </div>
                 <div class="buy_button">
-                    <a href="#" id="add_to_cart">
-                        <button><span class="fa fa-plus"></span>افزودن به سبد خرید</button>
+                    <a href="#" >
+                        <button id="add_to_cart"><span class="fa fa-plus"></span>افزودن به سبد خرید</button>
                     </a>
                 </div>
+                <p id="added_to_cart">
+
+                </p>
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 col-lg-2">

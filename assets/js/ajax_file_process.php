@@ -17,3 +17,8 @@ if (isset($_POST['product_id']))
 
 
 }
+if (isset($_POST['add_to_cart']))
+{
+    WC()->cart->add_to_cart( $_POST['product_id']);
+    echo "به سبد خرید اضافه شد";
+}

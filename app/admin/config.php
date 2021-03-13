@@ -15,7 +15,7 @@ class config
         $capsule->addConnection([
             'driver' => 'mysql',
             'host' => 'localhost',
-            'database' => 'farda_db_new',
+            'database' => 'fardamarket',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

@@ -6642,3 +6642,52 @@ label.switch>input[type="checkbox"]:checked~span:after {
 .user_options ul li a:hover::before {
     color: #0fabc6 !important;
 }
+
+#favorite i {
+    margin-top: 15px;
+    font-size: 22px;
+}
+
+#add-check {
+    color: #10AC84;
+}
+
+#share-social {
+    width: 130px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 60px;
+    left: -30px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+#share-social i {
+    line-height: 30px;
+}
+
+#share-social a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 0 3px;
+}
+
+#share-social a:hover {
+    color: #09bde3;
+}
+
+#share-social::after {
+    display: block;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 9px 9px 9px;
+    border-color: transparent transparent #7f7f7f transparent;
+    top: -9px;
+    left: 57px;
+    position: absolute;
+}

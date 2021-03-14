@@ -35,7 +35,7 @@
 
             </div>
         </div>
-        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-4">
+        <div class="col-xs-7 col-sm-7 col-md-7 col-lg-4" >
             <div class="product_img">
                 <?php
                 global $product;
@@ -49,10 +49,10 @@
                 <img class="image_main_product" src="<?php the_post_thumbnail_url() ?>" alt="">
                 <p id="user_id" style="display: none"><?php echo get_current_user_id(); ?></p>
                 <p id="product_id" style="display: none"><?php echo get_the_ID(); ?></p>
-                <ul>
+                <ul id="close-social">
 
-                    <li><a href="#" class="share"><span class="share"></span></a></li>
-                    <li><a href="#" id="favorite">
+                    <li ><a href="#/" class="share"><span class="share"></span></a></li>
+                    <li><a href="#/" id="favorite" data-toggle="tooltip" data-placement="right" title=" افزودن به علاقه‌مندی‌ها ">
                             <?php
                             $havemeta = get_user_meta(get_current_user_id(), 'favorites', false);
                            if (!empty($havemeta))
@@ -74,6 +74,14 @@
                         </a></li>
 
                     <li><span id="msg_add_fav"></span></li>
+                    <div id="share-social" style="display:none">
+<a href=""><i class="fab fa-whatsapp"></i></a>
+<a href=""><i class="fab fa-telegram-plane"></i></a>
+<a href=""><i class="fab fa-linkedin-in"></i></a>
+<a href=""><i class="fab fa-facebook-f"></i></a>
+<a href=""><i class="fab fa-twitter"></i></a>
+<a href=""><i class="fab fa-instagram"></i></a>
+                    </div>
                 </ul>
             </div>
         </div>
@@ -251,7 +259,7 @@
                     <span>تومان </span>
                 </div>
                 <div class="buy_button">
-                    <a href="#" >
+                    <a href="#/" >
                         <button id="add_to_cart"><span class="fa fa-plus"></span>افزودن به سبد خرید</button>
                     </a>
                 </div>

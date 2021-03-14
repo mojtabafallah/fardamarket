@@ -9,16 +9,16 @@ if (isset($_POST['product_id']))
        if (in_array($_POST['product_id'], $havemeta) )
        {
            delete_user_meta($_POST['user_id'],'favorites',$_POST['product_id']);
-           echo "<i class='fas fa-heart' style='color: grey'></i>";
+           echo "<i id='heart' class='fas fa-heart' style='color: grey'></i>";
        }else
        {
            add_user_meta($_POST['user_id'],'favorites',$_POST['product_id']);
-           echo "<i class='fas fa-heart' style='color: red'></i>";
+           echo "<i id='heart' class='fas fa-heart' style='color: red'></i>";
        }
    }else
    {
        add_user_meta($_POST['user_id'],'favorites',$_POST['product_id']);
-       echo "<i class='fas fa-heart' style='color: red'></i>";
+       echo "<i id='heart' class='fas fa-heart' style='color: red'></i>";
    }
 
 
@@ -26,6 +26,7 @@ if (isset($_POST['product_id']))
 }
 if (isset($_POST['add_to_cart']))
 {
+   
     include "../../../../../wp-load.php";
     global $woocommerce;
 
@@ -50,5 +51,5 @@ if (isset($_POST['add_to_cart']))
 
 
 
-    echo "به سبد خرید اضافه شد";
+    echo " <i id='add-check' class='far fa-check-circle'></i> به سبد خرید اضافه شد";
 }

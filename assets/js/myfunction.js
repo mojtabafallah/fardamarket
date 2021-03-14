@@ -1,4 +1,16 @@
 jQuery(document).ready(function() {
+    jQuery(".share").click(function() {
+        jQuery("#share-social").fadeIn();
+    });
+    // jQuery(".share").click(function() {
+    //     jQuery("#share-social").fadeOut();
+    // });
+    $("#close-social").mouseleave(function() {
+        jQuery("#share-social").fadeOut();
+    });
+
+
+
     jQuery('.plus').click(function() {
         var valCustom = jQuery('.quantity_number_woocomerce').val();
 
@@ -239,27 +251,27 @@ $(".ham_close").click(function() {
 var lowerSlider = document.querySelector("#lower"),
     upperSlider = document.querySelector("#upper");
 (document.querySelector(".from").innerHTML = upperSlider.value),
-    (document.querySelector(".to").innerHTML = lowerSlider.value);
+(document.querySelector(".to").innerHTML = lowerSlider.value);
 var lowerVal = parseInt(lowerSlider.value),
     upperVal = parseInt(upperSlider.value);
 (upperSlider.oninput = function() {
     (lowerVal = parseInt(lowerSlider.value)),
     (upperVal = parseInt(upperSlider.value)) < lowerVal + 4 &&
-    ((lowerSlider.value = upperVal - 4),
-    lowerVal == lowerSlider.min && (upperSlider.value = 4)),
+        ((lowerSlider.value = upperVal - 4),
+            lowerVal == lowerSlider.min && (upperSlider.value = 4)),
         (document.querySelector(".from").innerHTML =
             "تا<div class='fromPrice'>" + this.value + "</div>تومان");
 }),
-    (lowerSlider.oninput = function() {
-        (lowerVal = parseInt(lowerSlider.value)),
-            (upperVal = parseInt(upperSlider.value)),
-        lowerVal > upperVal - 4 &&
+(lowerSlider.oninput = function() {
+    (lowerVal = parseInt(lowerSlider.value)),
+    (upperVal = parseInt(upperSlider.value)),
+    lowerVal > upperVal - 4 &&
         ((upperSlider.value = lowerVal + 4),
-        upperVal == upperSlider.max &&
-        (lowerSlider.value = parseInt(upperSlider.max) - 4)),
-            (document.querySelector(".to").innerHTML =
-                "از<div class='toPrice'>" + this.value + "</div>تومان");
-    });
+            upperVal == upperSlider.max &&
+            (lowerSlider.value = parseInt(upperSlider.max) - 4)),
+        (document.querySelector(".to").innerHTML =
+            "از<div class='toPrice'>" + this.value + "</div>تومان");
+});
 var appendNumber = 4;
 var prependNumber = 1;
 var swiper = new Swiper('.swiper-container2', {

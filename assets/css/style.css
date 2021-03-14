@@ -6653,7 +6653,7 @@ label.switch>input[type="checkbox"]:checked~span:after {
 }
 
 #share-social {
-    width: 130px;
+    width: 150px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
@@ -6661,7 +6661,8 @@ label.switch>input[type="checkbox"]:checked~span:after {
     left: -30px;
     border-radius: 5px;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
+    padding: 0 5px;
 }
 
 #share-social i {
@@ -6671,8 +6672,8 @@ label.switch>input[type="checkbox"]:checked~span:after {
 #share-social a {
     color: white;
     text-decoration: none;
-    font-size: 14px;
-    padding: 0 3px;
+    font-size: 16px;
+    padding: 0 5px;
 }
 
 #share-social a:hover {

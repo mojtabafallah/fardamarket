@@ -1,34 +1,56 @@
-jQuery(document).ready(function() {
-    jQuery(".share").click(function() {
+function maketimer2(from, to, id) {
+
+    var now = new Date();
+    to = new Date(to);
+
+    var seconds = Math.floor((to - (now)) / 1000);
+    var minutes = Math.floor(seconds / 60);
+    var hours = Math.floor(minutes / 60);
+    var days = Math.floor(hours / 24);
+
+    hours = hours - (days * 24);
+    minutes = minutes - (days * 24 * 60) - (hours * 60);
+    seconds = seconds - (days * 24 * 60 * 60) - (hours * 60 * 60) - (minutes * 60);
+
+
+    var idd = '.days-' + id;
+    jQuery(idd).empty();
+
+
+    jQuery(idd).append(days + ':' + hours + ':' + minutes + ':' + seconds);
+}
+
+
+jQuery(document).ready(function () {
+    jQuery(".share").click(function () {
         jQuery("#share-social").fadeIn();
     });
     // jQuery(".share").click(function() {
     //     jQuery("#share-social").fadeOut();
     // });
-    $("#close-social").mouseleave(function() {
+    $("#close-social").mouseleave(function () {
         jQuery("#share-social").fadeOut();
     });
 
 
-
-    jQuery('.plus').click(function() {
+    jQuery('.plus').click(function () {
         var valCustom = jQuery('.quantity_number_woocomerce').val();
 
         valCustom++;
-        jQuery('.quantity_number_woocomerce').attr({ 'value': valCustom });
+        jQuery('.quantity_number_woocomerce').attr({'value': valCustom});
     });
 
-    jQuery('.minus').click(function() {
+    jQuery('.minus').click(function () {
 
         var valCustom = jQuery('.quantity_number_woocomerce').val();
         if (valCustom >= 2) {
             valCustom--;
-            jQuery('.quantity_number_woocomerce').attr({ 'value': valCustom });
+            jQuery('.quantity_number_woocomerce').attr({'value': valCustom});
         }
     });
 
 });
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     var user_optionsl = document.querySelectorAll('.user_options ul li').length;
     for (var i = 0; i < user_optionsl; i++) {
         document.getElementsByClassName('userop')[i].addEventListener('click', userOption);
@@ -37,19 +59,17 @@ jQuery(document).ready(function() {
     function userOption() {
         var optionCustom = $(this).attr('id');
         jQuery('.userop a').removeClass('active');
-        jQuery('.user_order').css({ 'display': 'none' });
-        jQuery("div" + "#" + optionCustom).css({ 'display': 'block' });
+        jQuery('.user_order').css({'display': 'none'});
+        jQuery("div" + "#" + optionCustom).css({'display': 'block'});
         jQuery('li#' + optionCustom + " " + "a").addClass('active');
     }
 });
 
 
-jQuery(document).ready(function() {
-    jQuery('.cart_total').theiaStickySidebar({
-
-    });
+jQuery(document).ready(function () {
+    jQuery('.cart_total').theiaStickySidebar({});
 });
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
     jQuery('.article_search_custom').theiaStickySidebar({
         // Settings
         additionalMarginTop: 10
@@ -58,8 +78,8 @@ jQuery(document).ready(function() {
         // Settings
         additionalMarginTop: 10
     });
-    jQuery('.article_search_custom').click(function() {
-        jQuery('html,body').animate({ 'scrollTop': '0' });
+    jQuery('.article_search_custom').click(function () {
+        jQuery('html,body').animate({'scrollTop': '0'});
     });
     jQuery('.latest_article').theiaStickySidebar({
         // Settings
@@ -69,32 +89,32 @@ jQuery(document).ready(function() {
 
     function myTopfunction() {
         if ($(window).scrollTop() >= 100) {
-            jQuery('.article_search_custom .fa-search').css({ 'display': 'flex' });
+            jQuery('.article_search_custom .fa-search').css({'display': 'flex'});
         } else {
-            jQuery('.article_search_custom .fa-search').css({ 'display': 'none' });
+            jQuery('.article_search_custom .fa-search').css({'display': 'none'});
         }
     }
 });
 
 
-$(document).ready(function(e) {
+$(document).ready(function (e) {
     try {
         $("body select").msDropDown();
     } catch (e) {
         alert(e.message);
     }
 });
-$(document).ready(function() {
-    $('.fa-bars').click(function() {
-        $('.menu_bar').animate({ left: '0' }, 'fast');
+$(document).ready(function () {
+    $('.fa-bars').click(function () {
+        $('.menu_bar').animate({left: '0'}, 'fast');
 
     });
-    $('.fa-close').click(function() {
-        $('.menu_bar').animate({ left: '-100%' }, 'fast');
+    $('.fa-close').click(function () {
+        $('.menu_bar').animate({left: '-100%'}, 'fast');
 
     });
 });
-$(function() {
+$(function () {
     $("#accordion").accordion();
 });
 //jQuery time
@@ -102,7 +122,7 @@ var current_fs, next_fs, previous_fs; //fieldsets
 var left, opacity, scale; //fieldset properties which we will animate
 var animating; //flag to prevent quick multi-click glitches
 
-$(".next").click(function() {
+$(".next").click(function () {
     if (animating) return false;
     animating = true;
 
@@ -115,8 +135,8 @@ $(".next").click(function() {
     //show the next fieldset
     next_fs.show();
     //hide the current fieldset with style
-    current_fs.animate({ opacity: 0 }, {
-        step: function(now, mx) {
+    current_fs.animate({opacity: 0}, {
+        step: function (now, mx) {
             //as the opacity of current_fs reduces to 0 - stored in "now"
             //1. scale current_fs down to 80%
             scale = 1 - (1 - now) * 0.2;
@@ -124,11 +144,11 @@ $(".next").click(function() {
             left = (now * 50) + "%";
             //3. increase opacity of next_fs to 1 as it moves in
             opacity = 1 - now;
-            current_fs.css({ 'transform': 'scale(' + scale + ')' });
-            next_fs.css({ 'left': left, 'opacity': opacity });
+            current_fs.css({'transform': 'scale(' + scale + ')'});
+            next_fs.css({'left': left, 'opacity': opacity});
         },
         duration: 0,
-        complete: function() {
+        complete: function () {
             current_fs.hide();
             animating = false;
         },
@@ -137,7 +157,7 @@ $(".next").click(function() {
     });
 });
 
-$(".previous").click(function() {
+$(".previous").click(function () {
     if (animating) return false;
     animating = true;
 
@@ -150,8 +170,8 @@ $(".previous").click(function() {
     //show the previous fieldset
     previous_fs.show();
     //hide the current fieldset with style
-    current_fs.animate({ opacity: 0 }, {
-        step: function(now, mx) {
+    current_fs.animate({opacity: 0}, {
+        step: function (now, mx) {
             //as the opacity of current_fs reduces to 0 - stored in "now"
             //1. scale previous_fs from 80% to 100%
             scale = 0.8 + (1 - now) * 0.2;
@@ -159,11 +179,11 @@ $(".previous").click(function() {
             left = ((1 - now) * 50) + "%";
             //3. increase opacity of previous_fs to 1 as it moves in
             opacity = 1 - now;
-            current_fs.css({ 'left': left });
-            previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity });
+            current_fs.css({'left': left});
+            previous_fs.css({'transform': 'scale(' + scale + ')', 'opacity': opacity});
         },
         duration: 800,
-        complete: function() {
+        complete: function () {
             current_fs.hide();
             animating = false;
         },
@@ -172,41 +192,41 @@ $(".previous").click(function() {
     });
 });
 
-$(".submit").click(function() {
+$(".submit").click(function () {
     return false;
 })
 
 
-$(document).ready(function() {
-    $('ul li ul li').hover(function() {
+$(document).ready(function () {
+    $('ul li ul li').hover(function () {
         $('.layout').css("display", "block");
     });
-    $('ul li ul li').mouseleave(function() {
+    $('ul li ul li').mouseleave(function () {
         $('.layout').css("display", "none");
     });
 });
-jQuery(function() {
+jQuery(function () {
     jQuery("#tabs").tabs();
 });
-jQuery(function() {
+jQuery(function () {
     jQuery("#tab2").tabs();
 });
 
-$(document).ready(function() {
-    $('ul li ul li').hover(function() {
+$(document).ready(function () {
+    $('ul li ul li').hover(function () {
         $('.layout').css("display", "block");
     });
-    $('ul li ul li').mouseleave(function() {
+    $('ul li ul li').mouseleave(function () {
         $('.layout').css("display", "none");
     });
 });
-$(document).ready(function() {
-    $('.read_more').click(function() {
+$(document).ready(function () {
+    $('.read_more').click(function () {
         $('.product_more_information').fadeIn();
         $(this).hide();
         $('.read_less').show();
     });
-    $('.read_less').click(function() {
+    $('.read_less').click(function () {
         $('.product_more_information').fadeOut();
         $(this).hide();
         $('.read_more').show();
@@ -236,42 +256,41 @@ var galleryTop = new Swiper('.gallery-top', {
 
 function goTop() {
 
-    $('html,body').animate({ scrollTop: 0 }, 'slow');
+    $('html,body').animate({scrollTop: 0}, 'slow');
 }
 
 
-
-$(".ham").click(function() {
+$(".ham").click(function () {
     $('.second_menu_info').slideDown();
 });
-$(".ham_close").click(function() {
+$(".ham_close").click(function () {
 
     $('.second_menu_info').slideUp();
 });
 var lowerSlider = document.querySelector("#lower"),
     upperSlider = document.querySelector("#upper");
 (document.querySelector(".from").innerHTML = upperSlider.value),
-(document.querySelector(".to").innerHTML = lowerSlider.value);
+    (document.querySelector(".to").innerHTML = lowerSlider.value);
 var lowerVal = parseInt(lowerSlider.value),
     upperVal = parseInt(upperSlider.value);
-(upperSlider.oninput = function() {
+(upperSlider.oninput = function () {
     (lowerVal = parseInt(lowerSlider.value)),
     (upperVal = parseInt(upperSlider.value)) < lowerVal + 4 &&
-        ((lowerSlider.value = upperVal - 4),
-            lowerVal == lowerSlider.min && (upperSlider.value = 4)),
+    ((lowerSlider.value = upperVal - 4),
+    lowerVal == lowerSlider.min && (upperSlider.value = 4)),
         (document.querySelector(".from").innerHTML =
             "تا<div class='fromPrice'>" + this.value + "</div>تومان");
 }),
-(lowerSlider.oninput = function() {
-    (lowerVal = parseInt(lowerSlider.value)),
-    (upperVal = parseInt(upperSlider.value)),
-    lowerVal > upperVal - 4 &&
+    (lowerSlider.oninput = function () {
+        (lowerVal = parseInt(lowerSlider.value)),
+            (upperVal = parseInt(upperSlider.value)),
+        lowerVal > upperVal - 4 &&
         ((upperSlider.value = lowerVal + 4),
-            upperVal == upperSlider.max &&
-            (lowerSlider.value = parseInt(upperSlider.max) - 4)),
-        (document.querySelector(".to").innerHTML =
-            "از<div class='toPrice'>" + this.value + "</div>تومان");
-});
+        upperVal == upperSlider.max &&
+        (lowerSlider.value = parseInt(upperSlider.max) - 4)),
+            (document.querySelector(".to").innerHTML =
+                "از<div class='toPrice'>" + this.value + "</div>تومان");
+    });
 var appendNumber = 4;
 var prependNumber = 1;
 var swiper = new Swiper('.swiper-container2', {
@@ -287,22 +306,22 @@ var swiper = new Swiper('.swiper-container2', {
         prevEl: '.swiper-button-prev',
     },
 });
-document.querySelector('.prepend-2-slides').addEventListener('click', function(e) {
+document.querySelector('.prepend-2-slides').addEventListener('click', function (e) {
     e.preventDefault();
     swiper.prependSlide([
         '<div class="swiper-slide">Slide ' + (--prependNumber) + '</div>',
         '<div class="swiper-slide">Slide ' + (--prependNumber) + '</div>'
     ]);
 });
-document.querySelector('.prepend-slide').addEventListener('click', function(e) {
+document.querySelector('.prepend-slide').addEventListener('click', function (e) {
     e.preventDefault();
     swiper.prependSlide('<div class="swiper-slide">Slide ' + (--prependNumber) + '</div>');
 });
-document.querySelector('.append-slide').addEventListener('click', function(e) {
+document.querySelector('.append-slide').addEventListener('click', function (e) {
     e.preventDefault();
     swiper.appendSlide('<div class="swiper-slide">Slide ' + (++appendNumber) + '</div>');
 });
-document.querySelector('.append-2-slides').addEventListener('click', function(e) {
+document.querySelector('.append-2-slides').addEventListener('click', function (e) {
     e.preventDefault();
     swiper.appendSlide([
         '<div class="swiper-slide">Slide ' + (++appendNumber) + '</div>',

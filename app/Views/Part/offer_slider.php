@@ -35,6 +35,7 @@
                         $date_to = $data['date_on_sale_to'];
                         $data_from = (array)$date_from;
                         $data_to = (array)$date_to;
+
                         ?>
 
                         <div class="slide">
@@ -42,12 +43,15 @@
                                 <a href="<?php the_permalink(); ?>" class="c-prodcut-box__img">
                                     <div class="c-prodcut-box">
                                         <img
-
+                                            <?php if (!empty($data_from['date']) && !empty($data_to['date'])): ?>
                                                 onload="setInterval(
                                                         function(){
-                                                        maketimer2('<?php echo $data_from['date'] ?>' , '<?php echo $data_to['date'] ?>' , '<?php echo $id?>')
+
+                                                        maketimer2('<?php echo $data_from['date'] ?>' , '<?php echo $data_to['date'] ?>' , '<?php echo $id ?>')
                                                         }
-                                                        , 1000);"
+                                                        , 1000);
+                                                        "
+                                            <?php endif; ?>
                                                 width="100px" height="150px" src="<?php the_post_thumbnail_url() ?>"
                                                 alt="">
                                     </div>

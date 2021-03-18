@@ -12,7 +12,7 @@ use app\controller\SubsliderController;
                     <div class="swiper-wrapper">
                         <?php
                         $args = array(
-                            'post_type' => 'product',
+                            'post_type' => ['product','post'],
                         );
                         $sliders = new WP_Query($args);
                         if ($sliders->have_posts()):?>

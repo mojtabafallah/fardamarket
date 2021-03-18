@@ -47,6 +47,7 @@
                         $date_to = $data['date_on_sale_to'];
                         $data_from = (array)$date_from;
                         $data_to = (array)$date_to;
+
                         ?>
                         <p id="demo"></p>
                         <div class="slide_custom">
@@ -60,15 +61,13 @@
                                         if(!is_null($data_from['date'])):?>
 
                                             onload="
-
-                                            setInterval(
-                                                function(){
-
-                                                maketimer2('<?php echo $data_from['date'] ?>' , '<?php echo $data_to['date'] ?>' , '<?php echo $id?>')
-                                                }
-                                                , 1000);"
+                                            //setInterval(
+                                            //    function(){
+                                            //    maketimer2('<?php //echo $data_from['date'] ?>//' , '<?php //echo $data_to['date'] ?>//' , '<?php //echo $id?>//')
+                                            //    }
+                                            //    , 1000);"
                                              <?php endif;?>
-                                             width="100px" height="150px"
+
                                              src="<?php the_post_thumbnail_url() ?>"
                                              alt="">
 

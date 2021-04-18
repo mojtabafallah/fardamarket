@@ -232,6 +232,7 @@
                             <li>
                                 <a class="next page-numbers" href="#"></a>
                             </li>
+                         
                         </ul>
                     </nav>
                 </div>

@@ -909,3 +909,5 @@ add_action( 'init', 'crunchify_create_the_attaction_taxonomy');
     }
 
 add_action('wp_login', 'redirect_after_login', 10, 2);
+
+

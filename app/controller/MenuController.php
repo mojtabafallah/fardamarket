@@ -15,36 +15,36 @@ class MenuController
         add_submenu_page('setting_theme', 'تنظیمات اسلایدر', 'اسلایدر', 'manage_options', 'setting_slider', array(panel::class, 'load_slider_panel'));
     }
 
-    public static function get_all_menu()
-    {
-
-        return DbController::get_data(self::$table_name);
-    }
-
-    public static function add_new_menu($data)
-    {
-        DbController::add_new_item(self::$table_name,$data);
-    }
-
-    public static function get_all_parent()
-    {
-        return DbController::get_data(self::$table_name,['parent','=',0]);
-    }
-
-    public static function delete_menu($id)
-    {
-        DbController::delete_item(self::$table_name,$id);
-    }
-
-    public static function edit_menu($id, array $data)
-    {
-        DbController::Edit_item(self::$table_name,$id,$data);
-    }
-
-    public static function get_child_menu($id_parent)
-    {
-        return DbController::get_data(self::$table_name,['parent','=',$id_parent]);
-    }
+//    public static function get_all_menu()
+//    {
+//
+//        return DbController::get_data(self::$table_name);
+//    }
+//
+//    public static function add_new_menu($data)
+//    {
+//        DbController::add_new_item(self::$table_name,$data);
+//    }
+//
+//    public static function get_all_parent()
+//    {
+//        return DbController::get_data(self::$table_name,['parent','=',0]);
+//    }
+//
+//    public static function delete_menu($id)
+//    {
+//        DbController::delete_item(self::$table_name,$id);
+//    }
+//
+//    public static function edit_menu($id, array $data)
+//    {
+//        DbController::Edit_item(self::$table_name,$id,$data);
+//    }
+//
+//    public static function get_child_menu($id_parent)
+//    {
+//        return DbController::get_data(self::$table_name,['parent','=',$id_parent]);
+//    }
 
 
 }

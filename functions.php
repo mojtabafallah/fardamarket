@@ -8,7 +8,17 @@ use app\controller\MenuController;
 use app\admin\config;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
-add_action('after_switch_theme', 'action_after_setup_theme');
+//add_action('after_switch_theme', 'action_after_setup_theme');
+
+add_action('after_setup_theme' , 'fardamarket_setup');
+function fardamarket_setup()
+{
+    add_theme_support('woocommerce');
+}
+
+include get_template_directory().'/wc-custom.php';
+
+/**************old code******************/
 
 
 add_action('admin_menu', array(MenuController::class, 'my_menu_pages'));

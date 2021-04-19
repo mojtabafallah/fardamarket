@@ -19,4 +19,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>
-<ul class="products columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?>">
+<div class="col-12 col-md-12 col-lg-8 col-xl-9 columns-<?php echo esc_attr( wc_get_loop_prop( 'columns' ) ); ?>">
+    <div class="categorizing">
+        <div class="categorizing_options">
+            <ul>
+                <li><span>مرتب سازی بر اساس :</span></li>
+                <li><a href="#" class="active">پرفروش ترین</a></li>
+                <li><a href="#">محبوب ترین</a></li>
+                <li><a href="#">جدید ترین</a></li>
+                <li><a href="#">گران ترین</a></li>
+                <li><a href="#">ارزان ترین</a></li>
+            </ul>
+        </div>
+        <div class="categorizing_product">
